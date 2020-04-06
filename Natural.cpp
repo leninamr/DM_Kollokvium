@@ -1,5 +1,5 @@
-﻿/*Гелета Анна
-	9302	*/
+﻿/*Гелета Анна*
+ *	 9302	 */
 #include<iostream>
 #include <string>
 #include "Natural.h";
@@ -19,7 +19,7 @@ Natural InputNatural()
 
 }
 
-void OutNatural(Natural N)
+void OutNatural(Natural N) //просто вывод
 {
 	for (int i = N.length - 1; i >= 0; i--)
 		cout << N.A[i];
@@ -27,12 +27,12 @@ void OutNatural(Natural N)
 }
 
 void Copy(Natural& temp, Natural N)
-{
+{			//копирование числа
 	temp.A = (int*)malloc(sizeof(int) * N.length);
 	temp.length = N.length;
 	for (int i = 0; i < N.length; i++)
 		temp.A[i] = N.A[i];
-}
+} 
 
 int COM_NN_D(Natural N1, Natural N2)
 {
@@ -96,20 +96,20 @@ Natural SUB_NN_N(Natural N, Natural N2)
 	Copy(temp, N);
 	for (int i = 0; i < N.length; i++)
 	{
-		if (i < N2.length) temp.A[i] -= (N2.A[i] - extra);
-		else temp.A[i] += extra;
+		if (i < N2.length) temp.A[i] -= (N2.A[i] - extra);	//вычитаем из одного другое плюс то, что забрали в предыдущий разряд
+		else temp.A[i] += extra;				//если вычитаемое закончилось, то просто убираем то, что ушло в предыдущие разряды
 		extra = 0;
-		if (temp.A[i] < 0) { temp.A[i] += 10; extra--; }
+		if (temp.A[i] < 0) { temp.A[i] += 10; extra--; }	//если число отрицательное, забираем десяток из следующего разряда
 		else extra = 0;
 	}
 	int i = N.length - 1;
-	while (temp.A[i] <= 0)
+	while (temp.A[i] <= 0)		//смотрим, на сколько меньше стало число
 	{
 		i--;
 		temp.length--;
 	}
-	if (COM_NN_D(N, N2) == 0) { temp.length = 1; temp.A[0] = 0; }
-	temp.A = (int*)realloc(temp.A, sizeof(int) * (temp.length));
+	if (COM_NN_D(N, N2) == 0) { temp.length = 1; temp.A[0] = 0; } //если числа были равны, то 0
+	temp.A = (int*)realloc(temp.A, sizeof(int) * (temp.length)); //перераспределяем память
 	return temp;
 }
 
@@ -118,11 +118,11 @@ void MUL_ND_N(Natural& N, int D)
 	int k = 0;
 	for (int i = 0; i < N.length; i++)
 	{
-		N.A[i] = N.A[i]*D + k;
+		N.A[i] = N.A[i]*D + k;	//умножаем на число, не забываем число из предыдущих разрядов
 		k = 0;
-		while (N.A[i] >= 10)
+		while (N.A[i] >= 10)	//пока чило не натуральное, вычитаем десять (приводим к натуральному)
 		{
-			k++;
+			k++;				//количество единиц, переносящихся в следующий разряд
 			N.A[i] -= 10;
 		}
 	}
@@ -133,10 +133,10 @@ Natural MUL_Nk_N(Natural N, int k)
 {
 	if (NZER_N_B(N) == 1) return N;
 	int l = k + N.length;
-	N.A = (int*)realloc(N.A, sizeof(int) * l);
-	for (int i = N.length - 1; i >= 0; i--)
+	N.A = (int*)realloc(N.A, sizeof(int) * l);	//увеличиваем память
+	for (int i = N.length - 1; i >= 0; i--)	//перемещаем числа вперед
 		N.A[i + k] = N.A[i];
-	for (int i = 0; i < k; i++)
+	for (int i = 0; i < k; i++)	//все остальное заполняем 0
 		N.A[i] = 0;
 	N.length += k;
 	return N;
@@ -148,9 +148,9 @@ Natural MUL_NN_N(Natural N, Natural N2)
 	for (int i = 0; i < N2.length; i++)
 	{
 		Natural temp;  Copy(temp, N);
-		MUL_ND_N(temp, N2.A[i]);
-		temp = MUL_Nk_N(temp, i);
-		if (i != 0) temp = ADD_NN_N(sum, temp);
+		MUL_ND_N(temp, N2.A[i]); //умножаем первое чило на какую-то цифру из второго 
+		temp = MUL_Nk_N(temp, i);	//возводим в 10 в степени, соответствующ. номеру в числе (начиная с 0)
+		if (i != 0) temp = ADD_NN_N(sum, temp); //складываем
 		Copy(sum, temp);
 		delete[]temp.A;
 	}
@@ -160,8 +160,8 @@ Natural MUL_NN_N(Natural N, Natural N2)
 Natural SUB_NDN_N(Natural N, Natural N2, int D)
 {
 	Natural temp, temp2; Copy(temp, N); Copy(temp2, N2);
-	MUL_ND_N(temp2, D);
-	if (COM_NN_D(temp, temp2) != 1) temp = SUB_NN_N(temp, temp2);
+	MUL_ND_N(temp2, D);	//умножаем на нужное число
+	if (COM_NN_D(temp, temp2) != 1) temp = SUB_NN_N(temp, temp2); //если первое больше второго, вычитаем
 	else cout << "Nothing happens. Result will be negtive\n";
 	return temp;
 }
@@ -169,33 +169,33 @@ Natural SUB_NDN_N(Natural N, Natural N2, int D)
 Natural DIV_NN_Dk(Natural N, Natural N2)
 {
 	Natural temp; int i, k, g = 0;
-	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; }
+	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; } //выбираем большее
 	if (COM_NN_D(N, N2) == 0) { 
 		temp.length = 1; temp.A = (int*)malloc(sizeof(int) * temp.length);
 		temp.A[0] = 1; 
-	}
+	} //если числа равны, получаем единицу
 	else 
 	{
 		k = N.length - N2.length;
-		for (i = N2.length - 1; i >= 0; i--)
+		for (i = N2.length - 1; i >= 0; i--)	//смотрим на первые цифры (кол-во равно длине второго числа)
 		{
 			if (N.A[i + k] > N2.A[i]) { g = 1; break; }
 			else if (N.A[i + k] < N2.A[i]) { g = 2; break; }
-			else g = 0;
-		}
+			else g = 0;						//узнаем больше это число, меньше или равно второму числу
+		}								//если больше или равно, берем его, если меньше, берем на одну цифру больше (иначе получим 0)
 		if (g == 1 || g == 0) { temp.A = (int*)malloc(sizeof(int) * N2.length); temp.length = N2.length; }
 		else { temp.A = (int*)malloc(sizeof(int) * (N2.length+1)); temp.length = N2.length +1; }
 		for (i = 0; i < temp.length; i++)
-			temp.A[i] = N.A[(N.length - temp.length) + i];
+			temp.A[i] = N.A[(N.length - temp.length) + i]; //записваем число в новую переменную
 		k = temp.length;
 		g = 1;
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < 10; i++)		//ищем цифру, при умножении которой на 2 получим наиболее близкое к итоговому
 		{
 			Natural temp2;
 			Copy(temp2, N2);
 			MUL_ND_N(temp2, i);
 			g = 1;
-			if (COM_NN_D(temp2, temp) != 1) {
+			if (COM_NN_D(temp2, temp) != 1) {	//но оно все еще должно быть меньше
 				if (COM_NN_D(temp2, temp) == 2) g = 0;
 				delete[]temp2.A;
 				break;
@@ -203,9 +203,9 @@ Natural DIV_NN_Dk(Natural N, Natural N2)
 			delete[]temp2.A;
 			g = 0;
 		}
-		temp.length = 1; if (g == 0) i--;
-		temp.A[0] = i; 
-		temp = MUL_Nk_N(temp, (N.length - k));
+		temp.length = 1; if (g == 0) i--; //тут и уменьшаем
+		temp.A[0] = i;		//записываемы
+		temp = MUL_Nk_N(temp, (N.length - k)); //добавляем нули
 	}
 	return temp;
 }
@@ -214,17 +214,16 @@ Natural DIV_NN_N(Natural N, Natural N2)
 {
 	Natural sum; sum.length = 1; sum.A = (int*)malloc(sizeof(int) * sum.length); sum.A[0] = 0;
 	Natural temp, div;  Copy(div, N);
-	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; }
+	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; } //выбираем большее
 	Copy(temp, N); 
-	while (temp.length > N2.length) //?
+	while (temp.length > N2.length) //пока больше
 	{
-		cout << "!";
-		div = DIV_NN_Dk(temp, N2);
-		sum = ADD_NN_N(sum, div);
-		div = MUL_NN_N(div, N2);
-		temp = SUB_NN_N(temp, div);
+		div = DIV_NN_Dk(temp, N2);	//ищем первую цифру (умножаем ее на 10 в нужной степени)
+		sum = ADD_NN_N(sum, div);	//прибавляем к общему
+		div = MUL_NN_N(div, N2);	//умножем циврк на число
+		temp = SUB_NN_N(temp, div); //смотрим, что остлось от делимого
 	}
-	if (COM_NN_D(temp, N2) != 1)
+	if (COM_NN_D(temp, N2) != 1) //уточнение для некторых случаев
 	{
 		div = DIV_NN_Dk(temp, N2);
 		sum = ADD_NN_N(sum, div);
@@ -234,26 +233,8 @@ Natural DIV_NN_N(Natural N, Natural N2)
 
 Natural MOD_NN_N(Natural N, Natural N2)
 {
-	Natural temp = DIV_NN_N(N, N2);
-	temp = MUL_NN_N(temp, N2);
-	temp = SUB_NN_N(N, temp);
+	Natural temp = DIV_NN_N(N, N2); //ищем целую часть
+	temp = MUL_NN_N(temp, N2);	//умножаем целую часть на второе число
+	temp = SUB_NN_N(N, temp);	//вычитаем из первого все
 	return temp;
-}
-
-
-
-int main()
-{
-	Natural N = InputNatural();
-	Natural N2 = InputNatural();
-	//cout << NZER_N_B(N) << "\n";
-	//temp = ADD_NN_N(temp, N);
-	//N = SUB_NN_N(N, N2);
-	//MUL_ND_N(N, 1);
-	//N = MUL_Nk_N(N, 0);
-	Natural temp;
-	temp = MOD_NN_N (N, N2); 
-	OutNatural(temp);
-	delete[]N.A; delete[]N2.A; 
-	delete[]temp.A;
 }
