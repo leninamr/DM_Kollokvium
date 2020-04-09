@@ -1,7 +1,7 @@
 #pragma once
 #include "StructInteger.h"
 #include "StructNatural.h"
-void Input(struct Integer& z); // ввод
+Integer Input(); // ввод
 void Output(struct Integer z); // вывод
 Natural ABS_Z_N(struct Integer& z); // Z-1
 int POZ_Z_D(struct Integer z); // Z-2
