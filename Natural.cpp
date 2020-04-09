@@ -1,5 +1,5 @@
 ﻿/*Гелета Анна*
- *	 9302	 */
+ *	9302  */
 #include<iostream>
 #include <string>
 #include "Natural.h";
