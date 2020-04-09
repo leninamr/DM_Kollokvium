@@ -80,81 +80,20 @@ Integer TRANS_Q_Z(Fraction& Q)
 	}
 }
 //Q-5
-int Srav(Fraction Q, Natural HOK)
-{
-	int j = 0;
-	int k = 0;
-	for (int i = Q.denum.length; i >= 0; i--)
-	{
-		if (Q.denum.A[i] == HOK.A[i])
-			k++;
-		if (Q.denum.A[i] < HOK.A[i])
-			j--;
-	}
-	if (j < 0)
-		return j;
-	if (k - 1 == Q.denum.length)
-		return k;
-	else
-		return 0;
-}
-
-Fraction ADD_QQ_Q(Fraction& Q1, Fraction& Q2)
-{
-	Fraction res;
-	Integer add;
-	Natural HOK;
-	HOK = LCM_NN_N(Q1.denum, Q2.denum);
-
-	if (Srav(Q1, HOK) > 0)
-	{
-		if (Srav(Q2, HOK) > 0)
-		{
-			add = ADD_ZZ_Z(Q1.num, Q2.num);
-			res.denum.A = new int[Q1.denum.length];
-			res.denum = Q1.denum;
-			res.num.A = new int[Q1.num.n];
-			res.num = add;
-		}
-		else
-		{
-			if (Srav(Q2, HOK) < 0)
-			{
-				Natural temp = DIV_NN_N(HOK, Q2.denum);
-				Integer f;
-				f = TRANS_N_Z(temp);
-				(*Q2.denum.A) = (*HOK.A);
-				Q2.num = MUL_ZZ_Z(Q2.num, f);
-				res.num = ADD_ZZ_Z(Q2.num, Q1.num);
-				res.denum = HOK;
-			}
-		}
-	}
-	else
-	{
-		if (Srav(Q1, HOK) > 0)
-		{
-			add = ADD_ZZ_Z(Q1.num, Q2.num);
-			res.denum.A = new int[Q2.denum.length];
-			res.denum = Q2.denum;
-			res.num.A = new int[Q2.num.n];
-			res.num = add;
-		}
-		else
-		{
-			if (Srav(Q1, HOK) < 0)
-			{
-				Natural temp = DIV_NN_N(HOK, Q1.denum);
-				Integer f;
-				f = TRANS_N_Z(temp);
-				(*Q1.denum.A) = (*HOK.A);
-				Q1.num = MUL_ZZ_Z(Q1.num, f);
-				res.num = ADD_ZZ_Z(Q1.num, Q2.num);
-				res.denum = HOK;
-			}
-		}
-	}
-	return res;
+Fraction ADD_QQ_Q(struct Fraction q1, struct Fraction q2) {
+	Fraction temp;
+	Natural D1, D2;
+	Integer Z1, Z2;
+	Natural LCM = LCM_NN_N(q1.denum, q2.denum); //Находим НОК знаменателя первой дроби и знаменателя второй
+	D1 = DIV_NN_N(LCM, q1.denum);               //Делим НОК на знаменатель первой дроби
+	Z1 = TRANS_N_Z(D1);
+	q1.num = MUL_ZZ_Z(q1.num, Z1);              //умножаем числитель первой дроби на полученное число
+	D2 = DIV_NN_N(LCM, q2.denum);               //аналогично для второй дроби
+	Z2 = TRANS_N_Z(D2);
+	q2.num = MUL_ZZ_Z(q2.num, Z2);              //прибавляем к числителю первой дроби числитель второй дроби
+	temp.num = ADD_ZZ_Z(q1.num, q2.num);
+	temp.denum = MUL_NN_N(q1.denum, D1);
+	return temp;
 }
 //Q-6
 Fraction SUB_QQ_Q(struct Fraction q1, struct Fraction q2) {
