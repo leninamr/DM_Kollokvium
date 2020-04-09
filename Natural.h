@@ -17,4 +17,4 @@ Natural DIV_NN_Dk(Natural N, Natural N2);
 Natural DIV_NN_N(Natural N, Natural N2);
 Natural MOD_NN_N(Natural N, Natural N2);
 Natural GCF_NN_N(Natural N, Natural N2);
-Natural LCM_NN_N(Natural N, Natural N2);
+Natural LCM_NN_N(Natural N, Natural N2); //ааа
