@@ -61,7 +61,7 @@ Fraction TRANS_Z_Q(Integer& B)
 	q.num.A = new int[B.n];                      //âûäåëÿåì ïàìÿòü ïîä ÷èñëèòåëü
 	q.num.b = B.b;
 	q.num.n = B.n;
-	for (int i = 0; i < q.num.n; i++)            //çàïîëíÿåì ÷èñëèòåëü
+	for (int i = 0; i <= q.num.n; i++)            //çàïîëíÿåì ÷èñëèòåëü
 		q.num.A[i] = B.A[i];
 	return q;
 }
