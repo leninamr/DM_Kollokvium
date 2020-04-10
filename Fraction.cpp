@@ -19,16 +19,14 @@ void OutputFraction(struct Fraction q) {
 }
 //Q-1
 Fraction RED_Q_Q(struct Fraction q) {
-	if (q.num.n == 0 && q.num.A[0] == 0) return q; //åñëè ÷èñëèòåëü íîëü, òî íå ñîêðàùàåì äðîáü
-	else {
 		Fraction temp;
 		Natural N;
 		N = ABS_Z_N(q.num);
-		Natural del = GCF_NN_N(N, q.denum);    //íàõîäèì ÍÎÄ ÷èñëèòåëÿ è çíàìåíàòåëÿ
-		if (del.length == 1 && del.A[0] == 1)  //åñëè ÍÎÄ = 1, òî íå ñîêðàùàåì äðîáü
+		Natural del = GCF_NN_N(N, q.denum);    //находим НОД числителя и знаменателя
+		if (del.length == 1 && del.A[0] == 1)  //если НОД = 1, то не сокращаем дробь
 			return q;
 		else {
-			Fraction temp;                     //èíà÷å äåëèì ÷èñëèòåëü è çíàìåíàòåëü íà ÍÎÄ
+			Fraction temp;                     //иначе делим числитель и знаменатель на НОД
 			Integer Z, D, denum_z;
 			Z = TRANS_N_Z(q.denum);
 			D = TRANS_N_Z(del);
@@ -38,7 +36,6 @@ Fraction RED_Q_Q(struct Fraction q) {
 			return temp;
 		}
 	}
-}
 //Q-2
 void INT_Q_B(Fraction Q)
 {
