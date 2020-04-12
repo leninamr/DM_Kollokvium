@@ -126,6 +126,8 @@ Fraction DIV_QQ_Q(struct Fraction q1, struct Fraction q2) {
 	Z1 = TRANS_N_Z(q1.denum);
 	Z2 = TRANS_N_Z(q2.denum);
 	temp.num = MUL_ZZ_Z(q1.num, Z2);   //óìíîæàåì ÷èñëèòåëü ïåðâîé äðîáè íà çíàìåíàòëü âòîðîé
+	if(q1.num.b==q2.num.b) temp.num.b=0;
+	else temp.num.b=1;
 	Z3 = MUL_ZZ_Z(Z1, q2.num);         //óìíîæàåì çíàìåíàòåëü ïåðâîé äðîáè íà ÷èñëèòåëü âòîðîé
 	temp.denum = TRANS_Z_N(Z3);
 	return temp;
