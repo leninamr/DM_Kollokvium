@@ -89,7 +89,7 @@ Fraction ADD_QQ_Q(struct Fraction q1, struct Fraction q2) {
 	Z2 = TRANS_N_Z(D2);
 	q2.num = MUL_ZZ_Z(q2.num, Z2);              //прибавляем к числителю первой дроби числитель второй дроби
 	temp.num = ADD_ZZ_Z(q1.num, q2.num);
-	temp.denum = MUL_NN_N(q1.denum, D1);
+	temp.denum = LCM;
 	return temp;
 }
 //Q-6
@@ -105,7 +105,7 @@ Fraction SUB_QQ_Q(struct Fraction q1, struct Fraction q2) {
 	Z2 = TRANS_N_Z(D2);
 	q2.num = MUL_ZZ_Z(q2.num, Z2);              //вычитаем из числителя первой дроби числитель второй
 	temp.num = SUB_ZZ_Z(q1.num, q2.num);
-	temp.denum = MUL_NN_N(q1.denum, D1);
+	temp.denum = LCM;
 	return temp;
 }
 //Q-7
