@@ -9,7 +9,7 @@ void InputFraction(struct Fraction &q) {
 	q.num=Input();          //вводим числитель (целое число)
 	q.denum=InputNatural(); //вводим знаменатель (натуральное число)
 }
-//Âûâîä äðîáè
+//Вывод дроби
 void OutputFraction(struct Fraction q) {
 	if (q.num.b == 1) cout << '-';         //выводим числитель
 	for (int i = q.num.n; i >= 0; i--)
@@ -41,11 +41,11 @@ void INT_Q_B(Fraction Q)
 {
 	if (Q.denum.length == 1 && Q.denum.A[0] == 1)//если в знаменателе единица, то рациональное число целое
 	{                                            //если целое, то да, нецелое - нет
-		cout << "äà\n";
+		cout << "да\n";
 	}
 	else
 	{
-		cout << "íåò\n";
+		cout << "нет\n";
 	}
 }
 //Q-3

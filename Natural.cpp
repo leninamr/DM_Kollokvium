@@ -2,7 +2,7 @@
  *	 9302	 */
 #include<iostream>
 #include <string>
-#include "Natural.h";
+#include "Natural.h"
 using namespace std;
 
 Natural InputNatural()
@@ -34,7 +34,7 @@ void Copy(Natural& temp, Natural N)
 		temp.A[i] = N.A[i];
 } 
 
-int COM_NN_D(Natural N1, Natural N2)
+int COM_NN_D(Natural N1, Natural N2) //сравнение чисел
 {
 	if (N1.length > N2.length) { return 2; }	// 2 - первое больше второго
 	else if (N2.length > N1.length) { return 1; } //1 - второе больше первого

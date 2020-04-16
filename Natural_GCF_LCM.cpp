@@ -1,7 +1,7 @@
 ﻿/*Гелета Анна*
  *	9302	 *
  * НОД и НОК */
-#include "Natural.h";
+#include "Natural.h"
 
 Natural GCF_NN_N(Natural N, Natural N2)
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "StructNatural.h";
+#include "StructNatural.h"
 Natural InputNatural();
 void OutNatural(Natural N);
 void Copy(Natural& temp, Natural N);

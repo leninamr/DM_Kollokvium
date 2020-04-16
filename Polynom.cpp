@@ -29,7 +29,7 @@ void inputPolynom(Polynom& polynom) // Функция ввода многочлена
 		cin >> i; 
 		if (i > polynom.m) polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (i + 1)); // Выделение памяти для хранение коэф-тов, индекс соответствует степени икса
 		if (polynom.C == NULL) exit(1);
-		cout << "Введите числетель и знаменатель коэффициента = ";
+		cout << "Введите числитель и знаменатель коэффициента = ";
 		InputFraction(polynom.C[i]);
 		if (i > polynom.m) polynom.m = i;
 		cout << "Продолжить ввод?\n";
@@ -209,7 +209,7 @@ Fraction FAC_P_Q(Polynom& polynom) //P-7 Вынесение из многочлена НОК знаменателе
 			polynom.C[i].denum = edin; // Присвоение знаменателю единицы
 		}
 	}
-	return(HODHOK);
+	return HODHOK;
 }
 Polynom MUL_PP_P(Polynom polynom, Polynom polynom2) //P-8 Умножение многочленов
 {
@@ -362,7 +362,7 @@ Polynom NMR_P_P(Polynom polynom) //P-13 Преобразование многочлена — кратные корн
 	return(polynom2);
 }
 
-int main() {
+/*int main() {
 	setlocale(LC_ALL, "rus");
 	Polynom polynom, polynom2, polynom3;
 	Fraction fraction;
@@ -416,3 +416,4 @@ int main() {
 
 	system("pause");
 }
+*/
