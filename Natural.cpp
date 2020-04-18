@@ -19,6 +19,17 @@ Natural InputNatural()
 
 }
 
+int NZER_N_B(Natural N)
+{
+	if (N.length == 1 && N.A[0] == 0) return 1; // 1 - да, число равно 0, 0 - нет, число не равно 0
+	else return 0;
+}
+
+void DeleteNatural(Natural N)
+{
+	if (N.A != NULL && NZER_N_B(N) == 0) delete[]N.A;
+}
+
 void OutNatural(Natural N) //просто вывод
 {
 	for (int i = N.length - 1; i >= 0; i--)
@@ -163,6 +174,7 @@ Natural SUB_NDN_N(Natural N, Natural N2, int D)
 	MUL_ND_N(temp2, D);	//умножаем на нужное число
 	if (COM_NN_D(temp, temp2) != 1) temp = SUB_NN_N(temp, temp2); //если первое больше второго, вычитаем
 	else cout << "Nothing happens. Result will be negtive\n";
+	DeleteNatural(temp2);
 	return temp;
 }
 
@@ -228,6 +240,8 @@ Natural DIV_NN_N(Natural N, Natural N2)
 		div = DIV_NN_Dk(temp, N2);
 		sum = ADD_NN_N(sum, div);
 	}
+	DeleteNatural(temp);
+	DeleteNatural(div);
 	return sum;
 }
 
