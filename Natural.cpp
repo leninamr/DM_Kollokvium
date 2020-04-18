@@ -34,7 +34,7 @@ void OutNatural(Natural N) //просто вывод
 {
 	for (int i = N.length - 1; i >= 0; i--)
 		cout << N.A[i];
-	cout << "\n";
+	//cout << "\n";
 }
 
 void Copy(Natural& temp, Natural N)
