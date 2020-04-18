@@ -15,394 +15,417 @@
 using namespace std;
 
 int main() {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-	int type=100;
-	int module=100;
-	while ((type != 0)){
-        Description();
-        cin >> type;
-        switch (type) {
-            case 0:
-                break;
-            case 1:
-                Natural n1;
-                Natural n2;
-                module=100;
-                while(module!=-1){
-                    D_Natural();
-                    cin >> module;
-                    switch (module){
-                        case -1:
-                            system("csl");
-                            break;
-                        case 1:
-                            cout<<"\nÐ¡Ñ€Ð°Ð²Ð½ÐµÐ½Ð¸Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            if (COM_NN_D(n1,n2)==2) cout<<"\nÐŸÐµÑ€Ð²Ð¾Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾\n";
-                            if (COM_NN_D(n1,n2)==1) cout<<"\nÐ’Ñ‚Ð¾Ñ€Ð¾Ðµ Ð±Ð¾Ð»ÑŒÑˆÐµ Ð¿ÐµÑ€Ð²Ð¾Ð³Ð¾\n";
-                            if (COM_NN_D(n1,n2)==0) cout<<"\nÐ§Ð¸ÑÐ»Ð° Ñ€Ð°Ð²Ð½Ñ‹\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 2:
-                            cout<<"\nÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° Ð½Ð¾Ð»ÑŒ\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            if (NZER_N_B(n1)==1) cout<<"\nÐ§Ð¸ÑÐ»Ð¾ Ñ€Ð°Ð²Ð½Ð¾ 0\n";
-                            if (NZER_N_B(n1)==0) cout<<"\nÐ§Ð¸ÑÐ»Ð¾ Ð½Ðµ Ñ€Ð°Ð²Ð½Ð¾ 0\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 3:
-                            cout<<"\nÐŸÑ€Ð¸Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ðº Ñ‡Ð¸ÑÐ»Ñƒ ÐµÐ´Ð¸Ð½Ð¸Ñ†Ñ‹\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            ADD_1N_D(n1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: ";OutNatural(n1); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 4:
-                            cout<<"\nÐ¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(ADD_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 5:
-                            cout<<"\nÐ’Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ð¸Ð· Ð¿ÐµÑ€Ð²Ð¾Ð³Ð¾ Ð±Ð¾Ð»ÑŒÑˆÐµÐ³Ð¾ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð²Ñ‚Ð¾Ñ€Ð¾Ð³Ð¾ Ð¼ÐµÐ½ÑŒÑˆÐµÐ³Ð¾ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾Ð³Ð¾\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(SUB_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 6:
-                            int d;
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° Ñ†Ð¸Ñ„Ñ€Ñƒ\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð¸Ñ„Ñ€Ñƒ: "; cin>>d;
-                            MUL_ND_N(n1,d);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(n1); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 7:
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° 10^k\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k: "; cin>>d;
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(MUL_Nk_N(n1,d)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 8:
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(MUL_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 9:
-                            cout<<"\nÐ’Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ð¸Ð· Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð´Ñ€ÑƒÐ³Ð¾Ð³Ð¾ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾, ÑƒÐ¼Ð½Ð¾Ð¶ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð½Ð° Ñ†Ð¸Ñ„Ñ€Ñƒ Ð´Ð»Ñ ÑÐ»ÑƒÑ‡Ð°Ñ Ñ Ð½ÐµÐ¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ð¾Ð¼"
-                                  "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†Ð¸Ñ„Ñ€Ñƒ: "; cin>>d;
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(SUB_NDN_N(n1,n2,d)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 10:
-                            cout<<"\nÐ’Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ðµ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ñ†Ð¸Ñ„Ñ€Ñ‹ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð±Ð¾Ð»ÑŒÑˆÐµÐ³Ð¾ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð½Ð° Ð¼ÐµÐ½ÑŒÑˆÐµÐµ, Ð´Ð¾Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð½Ð¾Ðµ Ð½Ð° 10^k,Ð³Ð´Ðµ k - Ð½Ð¾Ð¼ÐµÑ€ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ð¸ ÑÑ‚Ð¾Ð¹ Ñ†Ð¸Ñ„Ñ€Ñ‹ (Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‡Ð¸Ñ‚Ð°ÐµÑ‚ÑÑ Ñ Ð½ÑƒÐ»Ñ)"
-                                  "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(DIV_NN_Dk(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 11:
-                            cout<<"\nÐ§Ð°ÑÑ‚Ð½Ð¾Ðµ Ð¾Ñ‚ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð±Ð¾Ð»ÑŒÑˆÐµÐ³Ð¾ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° Ð¼ÐµÐ½ÑŒÑˆÐµÐµ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ¾Ð¼(Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¾Ñ‚Ð»Ð¸Ñ‡ÐµÐ½ Ð¾Ñ‚ Ð½ÑƒÐ»Ñ)"
-                                  "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(DIV_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 12:
-                            cout<<"\nÐžÑÑ‚Ð°Ñ‚Ð¾Ðº Ð¾Ñ‚ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð±Ð¾Ð»ÑŒÑˆÐµÐ³Ð¾ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° Ð¼ÐµÐ½ÑŒÑˆÐµÐµ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ¾Ð¼(Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¾Ñ‚Ð»Ð¸Ñ‡ÐµÐ½ Ð¾Ñ‚ Ð½ÑƒÐ»Ñ)"
-                                  "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(MOD_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 13:
-                            cout<<"\nÐÐžÐ” Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»"
-                                  "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(GCF_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 14:
-                            cout<<"\nÐÐžÐš Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»"
-                                  "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n1=InputNatural();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n2=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(LCM_NN_N(n1,n2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        default:
-                            cout<<"\nÐÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€\n";
-                            system("csl");
-                            break;
-                        }
-                }
-                break;
-            case 2:
-                Integer i1;
-                Integer i2;
-                module=100;
-                while (module!=-1){
-                    D_Integer();
-                    cin >> module;
-                    switch (module) {
-                        case -1:
-                            system("csl");
-                            break;
-                        case 1:
-                            cout<<"\nÐÐ±ÑÐ¾Ð»ÑŽÑ‚Ð½Ð°Ñ Ð²ÐµÐ»Ð¸Ñ‡Ð¸Ð½Ð° Ñ‡Ð¸ÑÐ»Ð°\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(ABS_Z_N(i1));
-                            cont();
-                            system("csl");
-                            break;
-                            case 2:
-                            cout<<"\nÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚Ð¸ Ñ‡Ð¸ÑÐ»Ð°\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            if (POZ_Z_D(i1)==2) cout<<"\nÐ§Ð¸ÑÐ»Ð¾ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ\n";
-                            if (POZ_Z_D(i1)==1) cout<<"\nÐ§Ð¸ÑÐ»Ð¾ Ñ€Ð°Ð²Ð½Ð¾ 0\n";
-                            if (POZ_Z_D(i1)==0) cout<<"\nÐ§Ð¸ÑÐ»Ð¾ Ð¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 3:
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ð½Ð° (-1)\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            MUL_ZM_Z(i1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(i1); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 4:
-                            Natural n;
-                            cout<<"\nÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ð³Ð¾ Ð² Ñ†ÐµÐ»Ð¾Ðµ\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; n=InputNatural();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(TRANS_N_Z(n)); cout<<"\n";
-                            system("csl");
-                            break;
-                        case 5:
-                            cout<<"\nÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ð½ÐµÐ¾Ñ‚Ñ€Ð¸Ñ†Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ Ð² Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ðµ\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutNatural(TRANS_Z_N(i1)); cout<<"\n";
-                            system("csl");
-                            break;
-                        case 6:
-                            cout<<"\nÐ¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ñ†ÐµÐ»Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ  Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i2=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(ADD_ZZ_Z(i1,i2)); cout<<"\n";
-                            system("csl");
-                            break;
-                        case 7:
-                            cout<<"\nÐ’Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ñ†ÐµÐ»Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ  Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i2=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(SUB_ZZ_Z(i1,i2)); cout<<"\n";
-                            system("csl");
-                            break;
-                        case 8:
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ñ†ÐµÐ»Ñ‹Ñ… Ñ‡Ð¸ÑÐµÐ»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ  Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i2=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(MUL_ZZ_Z(i1,i2)); cout<<"\n";
-                            system("csl");
-                            break;
-                        case 9:
-                            cout<<"\nÐ§Ð°ÑÑ‚Ð½Ð¾Ðµ Ð¾Ñ‚ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð±Ð¾Ð»ÑŒÑˆÐµÐ³Ð¾ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° Ð¼ÐµÐ½ÑŒÑˆÐµÐµ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ¾Ð¼(Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¾Ñ‚Ð»Ð¸Ñ‡ÐµÐ½ Ð¾Ñ‚ Ð½ÑƒÐ»Ñ)\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ  Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i2=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(DIV_ZZ_Z(i1,i2)); cout<<"\n";
-                            system("csl");
-                            break;
-                        case 10:
-                            cout<<"\nÐžÑÑ‚Ð°Ñ‚Ð¾Ðº Ð¾Ñ‚ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð±Ð¾Ð»ÑŒÑˆÐµÐ³Ð¾ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ñ‡Ð¸ÑÐ»Ð° Ð½Ð° Ð¼ÐµÐ½ÑŒÑˆÐµÐµ Ð¸Ð»Ð¸ Ñ€Ð°Ð²Ð½Ð¾Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ¾Ð¼(Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¾Ñ‚Ð»Ð¸Ñ‡ÐµÐ½ Ð¾Ñ‚ Ð½ÑƒÐ»Ñ)\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i1=Input();
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ  Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; i2=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(MOD_ZZ_Z(i1,i2)); cout<<"\n";
-                            system("csl");
-                            break;
-                        default:
-                            cout<<"\nÐÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€\n";
-                            system("csl");
-                            break;
-                    }
-                }
-                break;
-            case 3:
-                Fraction f1;
-                Fraction f2;
-                module=100;
-                while (module!=-1) {
-                    D_Fraction();
-                    cin >> module;
-                    switch (module) {
-                        case -1:
-                            system("csl");
-                            break;
-                        case 1:
-                            cout << "\nÐ¡Ð¾ÐºÑ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ Ð´Ñ€Ð¾Ð±Ð¸\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutputFraction(RED_Q_Q(f1)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 2:
-                            cout << "\nÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° Ñ†ÐµÐ»Ð¾Ðµ, ÐµÑÐ»Ð¸ Ñ€Ð°Ñ†Ð¸Ð¾Ð½Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ ÑÐ²Ð»ÑÐµÑ‚ÑÑ Ñ†ÐµÐ»Ñ‹Ð¼, Ñ‚Ð¾ Â«Ð´Ð°Â», Ð¸Ð½Ð°Ñ‡Ðµ Â«Ð½ÐµÑ‚Â»\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; INT_Q_B(f1); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 3:
-                            Integer i;
-                            cout << "\nÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ†ÐµÐ»Ð¾Ð³Ð¾ Ð² Ð´Ñ€Ð¾Ð±Ð½Ð¾Ðµ\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð´Ñ€Ð¾Ð±Ð¸: "; i=Input();
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; TRANS_Z_Q(i); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 4:
-                            cout << "\nÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð´Ñ€Ð¾Ð±Ð½Ð¾Ð³Ð¾ Ð² Ñ†ÐµÐ»Ð¾Ðµ (ÐµÑÐ»Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ñ€Ð°Ð²ÐµÐ½ 1)\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; Output(TRANS_Q_Z(f1)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 5:
-                            cout << "\nÐ¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ñ€Ð¾Ð±ÐµÐ¹\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"Ð’Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutputFraction(ADD_QQ_Q(f1,f2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 6:
-                            cout<<"\nÐ’Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ð´Ñ€Ð¾Ð±ÐµÐ¹\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"Ð’Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutputFraction(SUB_QQ_Q(f1,f2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 7:
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ñ€Ð¾Ð±ÐµÐ¹\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"Ð’Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutputFraction(MUL_QQ_Q(f1,f2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 8:
-                            cout<<"\nÐ”ÐµÐ»ÐµÐ½Ð¸Ðµ Ð´Ñ€Ð¾Ð±ÐµÐ¹ (Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¾Ñ‚Ð»Ð¸Ñ‡ÐµÐ½ Ð¾Ñ‚ Ð½ÑƒÐ»Ñ)\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f1);
-                            cout<<"Ð’Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutputFraction(DIV_QQ_Q(f1,f2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        default:
-                            cout<<"\nÐÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€\n";
-                            system("csl");
-                            break;
-                    }
-                }
-            case 4:
-                Polynom p1;
-                Polynom p2;
-                module=100;
-                while (module!=-1) {
-                    D_Polynom();
-                    cin >> module;
-                    switch (module) {
-                        case -1:
-                            system("csl");
-                            break;
-                        case 1:
-                            cout<<"\nÐ¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð¾Ð²\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(ADD_PP_P(p1,p2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 2:
-                            cout<<"\nÐ’Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ðµ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð¾Ð²\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(SUB_PP_P(p1,p2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 3:
-                            Fraction f;
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð° Ð½Ð° Ñ€Ð°Ñ†Ð¸Ð¾Ð½Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡ÐµÑ€ÐµÐ· ENTER Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÑŒ Ð¸ Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÑŒ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð´Ñ€Ð¾Ð±Ð¸: "; InputFraction(f);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(MUL_PQ_P(p1,f)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 4:
-                            int k;
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð° Ð½Ð° x^k\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ k"; cin>>k;
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(MUL_Pxk_P(p1,k)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 5:
-                            cout<<"\nÐ¡Ñ‚Ð°Ñ€ÑˆÐ¸Ð¹ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð°\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; LED_P_Q(p1); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 6:
-                            cout<<"\nÐ¡Ñ‚ÐµÐ¿ÐµÐ½ÑŒ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð°\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; DEG_P_N(p1); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 7:
-                            cout<<"\nÐ’Ñ‹Ð½ÐµÑÐµÐ½Ð¸Ðµ Ð¸Ð· Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð° ÐÐžÐš Ð·Ð½Ð°Ð¼ÐµÐ½Ð°Ñ‚ÐµÐ»ÐµÐ¹ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†Ð¸ÐµÐ½Ñ‚Ð¾Ð² Ð¸ ÐÐžÐ” Ñ‡Ð¸ÑÐ»Ð¸Ñ‚ÐµÐ»ÐµÐ¹\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; OutputFraction(FAC_P_Q(p1)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 8:
-                            cout<<"\nÐ£Ð¼Ð½Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð¾Ð²\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(MUL_PP_P(p1,p2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 9:
-                            cout<<"\nÐ§Ð°ÑÑ‚Ð½Ð¾Ðµ Ð¾Ñ‚ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð° Ð½Ð° Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½ Ð¿Ñ€Ð¸ Ð´ÐµÐ»ÐµÐ½Ð¸Ð¸ Ñ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ¾Ð¼\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(DIV_PP_P(p1,p2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 10:
-                            cout<<"\nÐžÑÑ‚Ð°Ñ‚Ð¾Ðº Ð¾Ñ‚ Ð´ÐµÐ»ÐµÐ½Ð¸Ñ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð° Ð½Ð° Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½ Ð¿Ñ€Ð¸ Ð´ÐµÐ»ÐµÐ½Ð¸Ð¸ Ñ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ¾Ð¼\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(MOD_PP_P(p1,p2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 11:
-                            cout<<"\nÐÐžÐ” Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð¾Ð²\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p2);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(GCF_PP_P(p1,p2)); cout<<"\n";
-                            cont();
-                            system("csl");
-                        case 12:
-                            cout<<"\nÐŸÑ€Ð¾Ð¸Ð·Ð²Ð¾Ð´Ð½Ð°Ñ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð°\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(DER_P_P(p1)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        case 13:
-                            cout<<"\nÐŸÑ€ÐµÐ¾Ð±Ñ€Ð°Ð·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¼Ð½Ð¾Ð³Ð¾Ñ‡Ð»ÐµÐ½Ð° â€” ÐºÑ€Ð°Ñ‚Ð½Ñ‹Ðµ ÐºÐ¾Ñ€Ð½Ð¸ Ð² Ð¿Ñ€Ð¾ÑÑ‚Ñ‹Ðµ\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼: "; inputPolynom(p1);
-                            cout<<"\nÐ ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚: "; outputPolynom(NMR_P_P(p1)); cout<<"\n";
-                            cont();
-                            system("csl");
-                            break;
-                        default:
-                            cout<<"\nÐÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€\n";
-                            system("csl");
-                            break;
-                    }
-                }
-            default:
-                cout<<"\nÐÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ´ÐµÐ½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€\n";
-                system("csl");
-                break;
-        }
+	
+	setlocale(LC_ALL, "Russian");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	int type = 100;
+	int module = 100;
+	while ((type != 0)) {
+		Description();
+		cin >> type;
+		switch (type) {
+		case 0:
+			break;
+		case 1:
+			system("cls");
+			Natural n1;
+			Natural n2;
+			module = 100;
+			while (module != -1) {
+				D_Natural();
+				cin >> module;
+				switch (module) {
+				case -1:
+					system("cls");
+					break;
+				case 1:
+					cout << "\nÑðàâíåíèå íàòóðàëüíûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					if (COM_NN_D(n1, n2) == 2) cout << "\nÏåðâîå áîëüøå âòîðîãî\n";
+					if (COM_NN_D(n1, n2) == 1) cout << "\nÂòîðîå áîëüøå ïåðâîãî\n";
+					if (COM_NN_D(n1, n2) == 0) cout << "\n×èñëà ðàâíû\n";
+					cont();
+					system("cls");
+					break;
+				case 2:
+					cout << "\nÏðîâåðêà íà íîëü\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
+					if (NZER_N_B(n1) == 1) cout << "\n×èñëî ðàâíî 0\n";
+					if (NZER_N_B(n1) == 0) cout << "\n×èñëî íå ðàâíî 0\n";
+					cont();
+					system("cls");
+					break;
+				case 3:
+					cout << "\nÏðèáàâëåíèå ê ÷èñëó åäèíèöû\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
+					ADD_1N_D(n1);
+					cout << "\nÐåçóëüòàò: "; OutNatural(n1); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 4:
+					cout << "\nÑëîæåíèå íàòóðàëüíûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(ADD_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 5:
+					cout << "\nÂû÷èòàíèå èç ïåðâîãî áîëüøåãî íàòóðàëüíîãî ÷èñëà âòîðîãî ìåíüøåãî èëè ðàâíîãî\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(SUB_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 6:
+					int d;
+					cout << "\nÓìíîæåíèå íàòóðàëüíîãî ÷èñëà íà öèôðó\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå öèôðó: "; cin >> d;
+					MUL_ND_N(n1, d);
+					cout << "\nÐåçóëüòàò: "; OutNatural(n1); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 7:
+					cout << "\nÓìíîæåíèå íàòóðàëüíîãî ÷èñëà íà 10^k\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå k: "; cin >> d;
+					cout << "\nÐåçóëüòàò: "; OutNatural(MUL_Nk_N(n1, d)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 8:
+					cout << "\nÓìíîæåíèå íàòóðàëüíûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(MUL_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 9:
+					cout << "\nÂû÷èòàíèå èç íàòóðàëüíîãî äðóãîãî íàòóðàëüíîãî, óìíîæåííîãî íà öèôðó äëÿ ñëó÷àÿ ñ íåîòðèöàòåëüíûì ðåçóëüòàòîì"
+						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÂâåäèòå öèôðó: "; cin >> d;
+					cout << "\nÐåçóëüòàò: "; OutNatural(SUB_NDN_N(n1, n2, d)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 10:
+					cout << "\nÂû÷èñëåíèå ïåðâîé öèôðû äåëåíèÿ áîëüøåãî íàòóðàëüíîãî íà ìåíüøåå, äîìíîæåííîå íà 10^k,ãäå k - íîìåð ïîçèöèè ýòîé öèôðû (íîìåð ñ÷èòàåòñÿ ñ íóëÿ)"
+						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(DIV_NN_Dk(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 11:
+					cout << "\n×àñòíîå îò äåëåíèÿ áîëüøåãî íàòóðàëüíîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)"
+						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(DIV_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 12:
+					cout << "\nÎñòàòîê îò äåëåíèÿ áîëüøåãî íàòóðàëüíîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)"
+						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(MOD_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 13:
+					cout << "\nÍÎÄ íàòóðàëüíûõ ÷èñåë"
+						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(GCF_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 14:
+					cout << "\nÍÎÊ íàòóðàëüíûõ ÷èñåë"
+						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
+					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
+					cout << "\nÐåçóëüòàò: "; OutNatural(LCM_NN_N(n1, n2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				default:
+					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
+					system("cls");
+					break;
+				}
+			}
+			break;
+		case 2:
+			system("cls");
+			Integer i1;
+			Integer i2;
+			module = 100;
+			while (module != -1) {
+				D_Integer();
+				cin >> module;
+				switch (module) {
+				case -1:
+					system("cls");
+					break;
+				case 1:
+					cout << "\nÀáñîëþòíàÿ âåëè÷èíà ÷èñëà\nÂâåäèòå ÷èñëî: "; i1 = Input();
+					cout << "\nÐåçóëüòàò: "; OutNatural(ABS_Z_N(i1));
+					cont();
+					system("cls");
+					break;
+				case 2:
+					cout << "\nÎïðåäåëåíèå ïîëîæèòåëüíîñòè ÷èñëà\nÂâåäèòå ÷èñëî: "; i1 = Input();
+					if (POZ_Z_D(i1) == 2) cout << "\n×èñëî ïîëîæèòåëüíîå\n";
+					if (POZ_Z_D(i1) == 0) cout << "\n×èñëî ðàâíî 0\n";
+					if (POZ_Z_D(i1) == 1) cout << "\n×èñëî îòðèöàòåëüíîå\n";
+					cont();
+					system("cls");
+					break;
+				case 3:
+					cout << "\nÓìíîæåíèå öåëîãî íà (-1)\nÂâåäèòå ÷èñëî: "; i1 = Input();
+					MUL_ZM_Z(i1);
+					cout << "\nÐåçóëüòàò: "; Output(i1); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 4:
+					Natural n;
+					cout << "\nÏðåîáðàçîâàíèå íàòóðàëüíîãî â öåëîå\nÂâåäèòå ÷èñëî: "; n = InputNatural();
+					cout << "\nÐåçóëüòàò: "; Output(TRANS_N_Z(n)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 5:
+					cout << "\nÏðåîáðàçîâàíèå öåëîãî íåîòðèöàòåëüíîãî â íàòóðàëüíîå\nÂâåäèòå ÷èñëî: "; i1 = Input();
+					cout << "\nÐåçóëüòàò: "; OutNatural(TRANS_Z_N(i1)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 6:
+					cout << "\nÑëîæåíèå öåëûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
+					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
+					cout << "\nÐåçóëüòàò: "; Output(ADD_ZZ_Z(i1, i2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 7:
+					cout << "\nÂû÷èòàíèå öåëûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
+					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
+					cout << "\nÐåçóëüòàò: "; Output(SUB_ZZ_Z(i1, i2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 8:
+					cout << "\nÓìíîæåíèå öåëûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
+					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
+					cout << "\nÐåçóëüòàò: "; Output(MUL_ZZ_Z(i1, i2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 9:
+					cout << "\n×àñòíîå îò äåëåíèÿ áîëüøåãî öåëîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
+					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
+					cout << "\nÐåçóëüòàò: "; Output(DIV_ZZ_Z(i1, i2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 10:
+					cout << "\nÎñòàòîê îò äåëåíèÿ áîëüøåãî öåëîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
+					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
+					cout << "\nÐåçóëüòàò: "; Output(MOD_ZZ_Z(i1, i2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				default:
+					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
+					system("cls");
+					break;
+				}
+			}
+			break;
+		case 3:
+			system("cls");
+			Fraction f1;
+			Fraction f2;
+			module = 100;
+			while (module != -1) {
+				D_Fraction();
+				cin >> module;
+				switch (module) {
+				case -1:
+					system("cls");
+					break;
+				case 1:
+					cout << "\nÑîêðàùåíèå äðîáè\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; InputFraction(f1);
+					cout << "\nÐåçóëüòàò: "; OutputFraction(RED_Q_Q(f1)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 2:
+					cout << "\nÏðîâåðêà íà öåëîå, åñëè ðàöèîíàëüíîå ÷èñëî ÿâëÿåòñÿ öåëûì, òî «äà», èíà÷å «íåò»\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; InputFraction(f1);
+					cout << "\nÐåçóëüòàò: "; INT_Q_B(f1); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 3:
+					Integer i;
+					cout << "\nÏðåîáðàçîâàíèå öåëîãî â äðîáíîå\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; i = Input();
+					cout << "\nÐåçóëüòàò: "; TRANS_Z_Q(i); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 4:
+					cout << "\nÏðåîáðàçîâàíèå äðîáíîãî â öåëîå (åñëè çíàìåíàòåëü ðàâåí 1)\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; InputFraction(f1);
+					cout << "\nÐåçóëüòàò: "; Output(TRANS_Q_Z(f1)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 5:
+					cout << "\nÑëîæåíèå äðîáåé\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
+					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
+					cout << "\nÐåçóëüòàò: "; OutputFraction(ADD_QQ_Q(f1, f2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 6:
+					cout << "\nÂû÷èòàíèå äðîáåé\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
+					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
+					cout << "\nÐåçóëüòàò: "; OutputFraction(SUB_QQ_Q(f1, f2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 7:
+					cout << "\nÓìíîæåíèå äðîáåé\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
+					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
+					cout << "\nÐåçóëüòàò: "; OutputFraction(MUL_QQ_Q(f1, f2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 8:
+					cout << "\nÄåëåíèå äðîáåé (äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
+					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
+					cout << "\nÐåçóëüòàò: "; OutputFraction(DIV_QQ_Q(f1, f2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				default:
+					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
+					system("cls");
+					break;
+				}
+			}
+			break;
+		case 4:
+			system("cls");
+			Polynom p1;
+			Polynom p2;
+			module = 100;
+			while (module != -1) {
+				D_Polynom();
+				cin >> module;
+				switch (module) {
+				case -1:
+					system("cls");
+					break;
+				case 1:
+					cout << "\nÑëîæåíèå ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(ADD_PP_P(p1, p2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 2:
+					cout << "\nÂû÷èòàíèå ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(SUB_PP_P(p1, p2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 3:
+					Fraction f;
+					cout << "\nÓìíîæåíèå ìíîãî÷ëåíà íà ðàöèîíàëüíîå ÷èñëî\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(MUL_PQ_P(p1, f)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 4:
+					int k;
+					cout << "\nÓìíîæåíèå ìíîãî÷ëåíà íà x^k\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå k"; cin >> k;
+					cout << "\nÐåçóëüòàò: "; outputPolynom(MUL_Pxk_P(p1, k)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 5:
+					cout << "\nÑòàðøèé êîýôôèöèåíò ìíîãî÷ëåíà\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÐåçóëüòàò: "; LED_P_Q(p1); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 6:
+					cout << "\nÑòåïåíü ìíîãî÷ëåíà\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÐåçóëüòàò: "; DEG_P_N(p1); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 7:
+					cout << "\nÂûíåñåíèå èç ìíîãî÷ëåíà ÍÎÊ çíàìåíàòåëåé êîýôôèöèåíòîâ è ÍÎÄ ÷èñëèòåëåé\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÐåçóëüòàò: "; OutputFraction(FAC_P_Q(p1)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 8:
+					cout << "\nÓìíîæåíèå ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(MUL_PP_P(p1, p2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 9:
+					cout << "\n×àñòíîå îò äåëåíèÿ ìíîãî÷ëåíà íà ìíîãî÷ëåí ïðè äåëåíèè ñ îñòàòêîì\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(DIV_PP_P(p1, p2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 10:
+					cout << "\nÎñòàòîê îò äåëåíèÿ ìíîãî÷ëåíà íà ìíîãî÷ëåí ïðè äåëåíèè ñ îñòàòêîì\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(MOD_PP_P(p1, p2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 11:
+					cout << "\nÍÎÄ ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(GCF_PP_P(p1, p2)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 12:
+					cout << "\nÏðîèçâîäíàÿ ìíîãî÷ëåíà\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(DER_P_P(p1)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				case 13:
+					cout << "\nÏðåîáðàçîâàíèå ìíîãî÷ëåíà — êðàòíûå êîðíè â ïðîñòûå\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
+					cout << "\nÐåçóëüòàò: "; outputPolynom(NMR_P_P(p1)); cout << "\n";
+					cont();
+					system("cls");
+					break;
+				default:
+					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
+					system("cls");
+					break;
+				}
+			}
+		default:
+			cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
+			system("cls");
+			break;
+		}
+
 	}
 }
