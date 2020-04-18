@@ -2,6 +2,7 @@
 
 #include "StructNatural.h"
 Natural InputNatural();
+void DeleteNatural(Natural N);
 void OutNatural(Natural N);
 void Copy(Natural& temp, Natural N);
 int COM_NN_D(Natural N1, Natural N2);
