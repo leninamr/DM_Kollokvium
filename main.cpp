@@ -379,8 +379,9 @@ int main() {
 						{
 							if (polynom.C[i].num.A != NULL) count++;	
 						}
+						if (count < 2) cout << "Введен один одночлен, недостаточно для вычисления\nВведите многочлен заново";
 					} while (count < 2);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(FAC_P_Q(p1)); cout << "\n";
+					cout << "\nÐåçóëüòàò: "; OutputFraction(FAC_P_Q(p1, count)); cout << "\n";
 					cont();
 					system("cls");
 					break;
