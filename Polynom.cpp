@@ -125,6 +125,20 @@ Polynom SUB_PP_P(Polynom polynom, Polynom polynom2) //P-2
 
 Polynom MUL_PQ_P(Polynom polynom, Fraction a) //P-3 Умножение многочлена на рациональное число
 {
+	for (long i = polynom.m; i >= 0; i--)
+	{
+		if (polynom.C[i].num.A != NULL)
+		{
+			polynom.C[i] = MUL_QQ_Q(polynom.C[i], a); // Умножение коэф-та на рац. число
+			if (polynom.C[i].num.A[0] == 0 && polynom.C[i].num.n == 0) Obnulenie(polynom.C[i]); // Обнуление ячеек с нулем в числителе
+			else polynom.C[i] = RED_Q_Q(polynom.C[i]); // Сокращение дробей
+		}
+	}
+	return(polynom);
+}
+
+/*Polynom MUL_PQ_P(Polynom polynom, Fraction a) //P-3 Умножение многочлена на рациональное число
+{
 	for (int i = polynom.m; i >= 0; i--)
 	{ 
 		if (polynom.C[i].num.A != NULL) polynom.C[i] = MUL_QQ_Q(polynom.C[i], a); // Умножение коэф-та на рац. число
@@ -132,7 +146,7 @@ Polynom MUL_PQ_P(Polynom polynom, Fraction a) //P-3 Умножение многочлена на раци
 		else polynom.C[i] = RED_Q_Q(polynom.C[i]); // Сокращение дробей
 	}
 	return(polynom);
-}
+}*/
 
 Polynom MUL_Pxk_P(Polynom polynom, int k) //P-4 Умножение многочлена на x^k
 {
