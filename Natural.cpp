@@ -1,22 +1,37 @@
-/*Гелета Анна*
+﻿/*Гелета Анна*
  *	 9302	 */
 #include<iostream>
 #include <string>
-#include "Natural.h"
+#include "Natural.h";
 using namespace std;
 
 Natural InputNatural()
 {
-	Natural N; string s;
+	Natural N; string s; int k = 0;
 	cin >> s;
 	N.length = s.length();
-	N.A =(int*)malloc(sizeof(int)*N.length); int j = 0;
-	for (int i = N.length - 1; i >= 0; i--)
-	{
-		N.A[j] = s[i] - 48; j++;
-	}							//преобразование символа в число (в таблице ASCII 0 - 48)
-	return N;					// 0 элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, длина равна 3
+	N.A =(int*)malloc(sizeof(int)*N.length); int i = 0, j = 0, a;
 
+	while(1) {
+		j = 0;
+		for (i = N.length - 1; i >= 0; i--) //нулевой элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, длина равна 3
+		{
+			a = s[i];
+			if (a == 48 && i == 0 && N.length!=1) { cout << "that's starting with zero fuck off\n"; break; } //если число не 0, но начинается с 0
+			if ((47 < a) && (a < 58))
+			{
+				N.A[j] = a - 48; j++;	//преобразование символа в число (в таблице ASCII 0 - 48)
+			}
+			else {
+				cout << "oh shit here we go again. Попробуй еще" << "\n"; break; //если в числе лишние символы (не цифры)
+			}
+		}
+		if (i == -1) break;
+		cin >> s;
+		N.length = s.length();
+		N.A = (int*)realloc(N.A, sizeof(int) * N.length);
+	} 
+	return N;					
 }
 
 int NZER_N_B(Natural N)
@@ -34,7 +49,8 @@ void OutNatural(Natural N) //просто вывод
 {
 	for (int i = N.length - 1; i >= 0; i--)
 		cout << N.A[i];
-	//cout << "\n";
+	cout << "\n";
+	DeleteNatural(N);
 }
 
 void Copy(Natural& temp, Natural N)
@@ -45,7 +61,7 @@ void Copy(Natural& temp, Natural N)
 		temp.A[i] = N.A[i];
 } 
 
-int COM_NN_D(Natural N1, Natural N2) //сравнение чисел
+int COM_NN_D(Natural N1, Natural N2)
 {
 	if (N1.length > N2.length) { return 2; }	// 2 - первое больше второго
 	else if (N2.length > N1.length) { return 1; } //1 - второе больше первого
@@ -55,12 +71,6 @@ int COM_NN_D(Natural N1, Natural N2) //сравнение чисел
 			else if (N2.A[i] > N1.A[i]) return 1;
 		return 0;								// 0 - они равны
 	}
-}
-
-int NZER_N_B(Natural N)
-{
-	if (N.length == 1 && N.A[0] == 0) return 1; // 1 - да, число равно 0, 0 - нет, число не равно 0
-	else return 0;
 }
 
 void ADD_1N_D(Natural& N)
@@ -138,6 +148,7 @@ void MUL_ND_N(Natural& N, int D)
 		}
 	}
 	if (k > 0) { N.A = (int*)realloc(N.A, sizeof(int) * (++N.length));  N.A[N.length - 1] = k;}
+	if (D == 0) { N.length = 1; N.A = (int*)realloc(N.A, sizeof(int) * (N.length)); }
 }
 
 Natural MUL_Nk_N(Natural N, int k)
@@ -180,6 +191,8 @@ Natural SUB_NDN_N(Natural N, Natural N2, int D)
 
 Natural DIV_NN_Dk(Natural N, Natural N2)
 {
+	if (NZER_N_B(N) == 1) return N;
+	if (NZER_N_B(N2) == 1) return N2;
 	Natural temp; int i, k, g = 0;
 	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; } //выбираем большее
 	if (COM_NN_D(N, N2) == 0) { 
@@ -224,6 +237,8 @@ Natural DIV_NN_Dk(Natural N, Natural N2)
 
 Natural DIV_NN_N(Natural N, Natural N2)
 {
+	if (NZER_N_B(N) == 1) return N;
+	if (NZER_N_B(N2) == 1) return N2;
 	Natural sum; sum.length = 1; sum.A = (int*)malloc(sizeof(int) * sum.length); sum.A[0] = 0;
 	Natural temp, div;  Copy(div, N);
 	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; } //выбираем большее
@@ -247,7 +262,9 @@ Natural DIV_NN_N(Natural N, Natural N2)
 
 Natural MOD_NN_N(Natural N, Natural N2)
 {
-	Natural temp = DIV_NN_N(N, N2); //ищем целую часть
+	Natural temp;
+	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; }
+	temp = DIV_NN_N(N, N2); //ищем целую часть
 	temp = MUL_NN_N(temp, N2);	//умножаем целую часть на второе число
 	temp = SUB_NN_N(N, temp);	//вычитаем из первого все
 	return temp;
