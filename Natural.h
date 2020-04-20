@@ -2,9 +2,9 @@
 
 #include "StructNatural.h"
 Natural InputNatural();
-void DeleteNatural(Natural N);
 void OutNatural(Natural N);
 void Copy(Natural& temp, Natural N);
+void DeleteNatural(Natural& N);
 int COM_NN_D(Natural N1, Natural N2);
 int NZER_N_B(Natural N);
 void ADD_1N_D(Natural& N);
