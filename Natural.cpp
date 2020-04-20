@@ -17,13 +17,15 @@ Natural InputNatural()
 		for (i = N.length - 1; i >= 0; i--) //нулевой элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, длина равна 3
 		{
 			a = s[i];
-			if (a == 48 && i == 0 && N.length!=1) { cout << "that's starting with zero fuck off\n"; break; } //если число не 0, но начинается с 0
+			if (a == 48 && i == 0 && N.length!=1) { cout << "Число не может с нуля начинаться, введите корреткное значение:"; 
+							       break; } //если число не 0, но начинается с 0
 			if ((47 < a) && (a < 58))
 			{
 				N.A[j] = a - 48; j++;	//преобразование символа в число (в таблице ASCII 0 - 48)
 			}
 			else {
-				cout << "oh shit here we go again. Попробуй еще" << "\n"; break; //если в числе лишние символы (не цифры)
+				cout << "Присутствуют лишние символы, не являющиеся цифрами. Введите корректное значение: "; break; 
+				//если в числе лишние символы (не цифры)
 			}
 		}
 		if (i == -1) break;
@@ -184,7 +186,7 @@ Natural SUB_NDN_N(Natural N, Natural N2, int D)
 	Natural temp, temp2; Copy(temp, N); Copy(temp2, N2);
 	MUL_ND_N(temp2, D);	//умножаем на нужное число
 	if (COM_NN_D(temp, temp2) != 1) temp = SUB_NN_N(temp, temp2); //если первое больше второго, вычитаем
-	else cout << "Nothing happens. Result will be negtive\n";
+	else cout << "Ничего не происходит. Результат будет отрицательным\n";
 	DeleteNatural(temp2);
 	return temp;
 }
