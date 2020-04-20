@@ -9,45 +9,78 @@
 using namespace std;
 
 
+void CorrectInput(string s, int& j) {
+	j = 0;
+	while (j < s.length()) {  // проходимся по строке
+		if (s[0] == '-') {
+			if (s.length() == 1 || s[1] == '0' || s[1] == '-') break;
+			if ((s[j] != '-') && (s[j] != '0') && (s[j] != '1') && (s[j] != '2') && (s[j] != '3') && (s[j] != '4') && (s[j] != '5') && (s[j] != '6') && (s[j] != '7') && (s[j] != '8') && (s[j] != '9')) break;
+			else    j++;    //считаем кол-во символов в строке удовлетворяющих условию
+		}
+		else {
+			if (s[0] == '0' && s[1] == '0') break;
+			if ((s[j] != '0') && (s[j] != '1') && (s[j] != '2') && (s[j] != '3') && (s[j] != '4') && (s[j] != '5') && (s[j] != '6') && (s[j] != '7') && (s[j] != '8') && (s[j] != '9')) break;
+			else j++;
+		}
+	}
+}
+
+
 Integer Input()
 {
 	Integer Z; string s;
+	int j = 0;
 	cin >> s;
-	if (s[0] == '-') {
-		Z.n = s.length()-1;
-		Z.A = (int*)malloc(sizeof(int) * Z.n); int j = 0;
-		for (int i = Z.n; i >= 1; i--)
-		{
-			Z.A[j] = s[i] - 48; j++;
-		}							     //преобразование символа в число (в таблице ASCII 0 - 48)
-		Z.b = 1;
-		Z.n--;
-	}
-	else {
-		Z.n = s.length();
-		Z.A = (int*)malloc(sizeof(int) * Z.n); int j = 0;
-		for (int i = Z.n-1; i >= 0; i--)
-		{
-			Z.A[j] = s[i] - 48; j++;
+	CorrectInput(s, j);
+	if (j != s.length())   // если кол-во символов в строке не равно кол-ву корректных символов
+		do {
+			cout << "\nОшибка!\nВведите корректное целое число:\n";   // просим ввести правильно
+			cin >> s;
+			CorrectInput(s, j);
+		} while (j != s.length()); // пока не введут правильно
+		if (s[0] == '-') {
+			Z.n = s.length() - 1;
+			Z.A = (int*)malloc(sizeof(int) * Z.n); int j = 0;
+			for (int i = Z.n; i >= 1; i--)
+			{
+				Z.A[j] = s[i] - 48; j++;
+			}                                //преобразование символа в число (в таблице ASCII 0 - 48)
+			Z.b = 1;
+			Z.n--;
 		}
-		Z.b = 0;
-		Z.n--;
-	}
-	return Z; // 0 элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, старшая позиция равна 2
+		else {
+			Z.n = s.length();
+			Z.A = (int*)malloc(sizeof(int) * Z.n); int j = 0;
+			for (int i = Z.n - 1; i >= 0; i--)
+			{
+				Z.A[j] = s[i] - 48; j++;
+			}
+			Z.b = 0;
+			Z.n--;
+		}
+		return Z; // 0 элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, старшая позиция равна 2
 }
 
-
-	// ВЫВОД ЧИСЛА
+// ВЫВОД ЧИСЛА
 void Output(struct Integer z) {
-	cout << "Знак и старшая позиция в числе:" << endl;
-	cout <<endl<< "b = " << z.b << endl << "n = " << z.n<<endl;
+
+	if (z.b == 1) cout << "-";
 	int i = 0;
-	cout << "Число в обратном порядке:" << endl;
-	while (i < z.n+1) {
-		cout << z.A[i] << ' '; i++;
+	while (i <= z.n)
+	{
+		cout << z.A[z.n - i]; i++;
 	}
 	cout << endl;
 }
+/*cout << "Знак и старшая позиция в числе:" << endl;
+cout <<endl<< "b = " << z.b << endl << "n = " << z.n<<endl;
+int i = 0;
+cout << "Число в обратном порядке:" << endl;
+while (i < z.n+1) {
+	cout << z.A[i] << ' '; i++;
+}
+cout << endl; */
+
 
 Natural ABS_Z_N(struct Integer& z) {
 	Natural N;                                             // создаем натуральное число
@@ -68,8 +101,13 @@ int POZ_Z_D(struct Integer z)
 }
 
 void MUL_ZM_Z(struct Integer& z) {
+	if ((z.n != 0) || (z.A[0] != 0)) {
+		if (z.b == 1) z.b = 0;    // если число отрицательное, то становится положительным
+		else z.b = 1;            // иначе число становится отрицательным
+	}
+	/*
 	if (z.b == 1) z.b = 0;    // если число отрицательное, то становится положительным
-	else z.b = 1;            // иначе число становится отрицательным
+	else z.b = 1;            // иначе число становится отрицательным*/
 }
 
 Integer TRANS_N_Z(struct Natural& f)
@@ -193,7 +231,7 @@ Integer SUB_ZZ_Z(Integer z1, Integer z2) {
 	Natural N, N2, tempN;
 	N = ABS_Z_N(z1);
 	N2 = ABS_Z_N(z2);
-	if ((COM_NN_D(N, N2) == 0)&& (POZ_Z_D(z1) == (POZ_Z_D(z2)))) {       // z1=z2 и знак одинаковый
+	if ((COM_NN_D(N, N2) == 0) && (POZ_Z_D(z1) == (POZ_Z_D(z2)))) {       // z1=z2 и знак одинаковый
 		tempZ.A = new int[1];                                           // tempZ=0, вносим 0 в структуру
 		tempZ.A[0] = 0;
 		tempZ.n = 0;
@@ -327,98 +365,138 @@ Integer DIV_ZZ_Z(Integer z1, Integer z2) {
 	Natural N, N2, tempN;
 	N = ABS_Z_N(z1);
 	N2 = ABS_Z_N(z2);
-		if (POZ_Z_D(z1) == 1) {            // если первое число отрицательное
-			if (POZ_Z_D(z2) == 2) {        // если второе число положительное: -z1/z2 знак будет -
-				tempN = DIV_NN_N(N,N2);      // делим
-				tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
-				tempZ.b = 1;                   // вносим знак минус в полученное число
-				return tempZ;
-			}
-			if (POZ_Z_D(z2) == 1) {          // если второе число отрицательное: -z1/-z2 знак будет +
-				tempN = DIV_NN_N(N, N2);
-				tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
-				tempZ.b = 0;                   // вносим знак плюс в полученное число
-				return tempZ;
-			}
-		}
-		if (POZ_Z_D(z1) == 2) {                     // если z1 положительный
-			if (POZ_Z_D(z2) == 2) {                 // если z2 положительный: z1/z2 знак будет +
-				tempN = DIV_NN_N(N, N2);
-				tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
-				tempZ.b = 0;                   // вносим знак плюс в полученное число
-				return tempZ;
-			}
-			if (POZ_Z_D(z2) == 1) {       // если z2 отрицательный z1/-z2  знак будет -
-				tempN = DIV_NN_N(N, N2);      // делим
-				tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
-				tempZ.b = 1;                   // вносим знак минус в полученное число
-				return tempZ;
-			}
-		}
-		if (POZ_Z_D(z1) == 0) {
-			if (POZ_Z_D(z2) != 0) {
+	if (((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 2)) || ((POZ_Z_D(z1) == 2) && (POZ_Z_D(z2) == 1))) {     // если одно из чисел отрицательное
+		if (((COM_NN_D(N, N2) == 2) && (POZ_Z_D(z1) == 1)) || ((POZ_Z_D(z2) == 1) && (COM_NN_D(N, N2) == 1))) {      // если модуль отрицательного числа больше, то ответ 0
 			tempZ.A = new int[1];                                           // tempZ=0, вносим 0 в структуру
 			tempZ.A[0] = 0;
 			tempZ.n = 0;
 			tempZ.b = 0;
-			return tempZ;
-			}
 		}
-		if (POZ_Z_D(z2) == 0) {
-			if (POZ_Z_D(z1) != 0) {
+		else {          // если модуль положительного больше
+			tempN = DIV_NN_N(N, N2);      // делим
+			tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
+			tempZ.b = 1;      // знак минус, так как делим положительное на отрицательное
+		}
+	}
+	else {         // если оба числа одного знака
+		if (((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 1) && (COM_NN_D(N, N2) != 0)) || ((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 0)) || ((POZ_Z_D(z1) == 0) && (POZ_Z_D(z2) == 1))) {     // если (оба числа отрицательные и не равны) ИЛИ (одно из чисел =0, а второе отрицательное), то ответ 0
 			tempZ.A = new int[1];                                           // tempZ=0, вносим 0 в структуру
 			tempZ.A[0] = 0;
 			tempZ.n = 0;
-			tempZ.b = 0;
-			return tempZ;
-			}
 		}
+		else if (((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 1)) || ((POZ_Z_D(z1) == 2) && (POZ_Z_D(z2) == 2))) {         // если числа равны или оба положительны, то делим
+			tempN = DIV_NN_N(N, N2);      // делим
+			tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
+		}
+		tempZ.b = 0;    // знак плюс, так как оба числа одного знака
+	}
+	return tempZ;
 }
+/*Integer DIV_ZZ_Z(Integer z1, Integer z2) {
+	Integer tempZ;
+	Natural N, N2, tempN;
+	N = ABS_Z_N(z1);
+	N2 = ABS_Z_N(z2);
+
+	if (((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 2)) || ((POZ_Z_D(z1) == 2) && (POZ_Z_D(z2) == 1))) {     // если одно из чисел отрицательное
+		if (((COM_NN_D(N, N2) == 2) && (POZ_Z_D(z1) == 1)) || ((POZ_Z_D(z2) == 1) && (COM_NN_D(N, N2) == 1))) {      // если модуль отрицательного числа больше, то ответ 0
+			tempZ.A = new int[1];                                           // tempZ=0, вносим 0 в структуру
+			tempZ.A[0] = 0;
+			tempZ.n = 0;
+			tempZ.b = 0;
+		}
+		else {          // если модуль положительного больше
+			tempN = DIV_NN_N(N, N2);      // делим
+			tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
+			tempZ.b = 1;      // знак минус, так как делим положительное на отрицательное
+		}
+	}
+	else {         // если оба числа одного знака
+		if (((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 1) && (COM_NN_D(N, N2) != 0)) || (POZ_Z_D(z1) == 0) || (POZ_Z_D(z2) == 0)) {     // Если ( (оба числа отрицательные и не равны) ИЛИ (первое число 0) ИЛИ (второе число 0) )
+			tempZ.A = new int[1];                                           // tempZ=0, вносим 0 в структуру
+			tempZ.A[0] = 0;
+			tempZ.n = 0;
+		}
+		else {         // если числа равны или оба положительны, то делим
+			tempN = DIV_NN_N(N, N2);      // делим
+			tempZ = TRANS_N_Z(tempN);      // преобразуем натуральное частное в целое
+		}
+		tempZ.b = 0;    // знак плюс, так как оба числа одного знака
+	}
+	return tempZ;
+}*/
 
 Integer MOD_ZZ_Z(Integer z1, Integer& z2)
 {
-	Integer tempZ, divZ;
-	divZ = DIV_ZZ_Z(z1, z2);
-	if (POZ_Z_D(z2) == 0)
+	Integer tempZ;
+	Natural N, N2;
+	N = ABS_Z_N(z1);
+	N2 = ABS_Z_N(z2);
+	if ((POZ_Z_D(z2) == 1) && (POZ_Z_D(z1) == 1))         // если оба отрицательны
 	{
-		tempZ = SUB_ZZ_Z(z2, MUL_ZZ_Z(z1, DIV_ZZ_Z(z2, z1)));   // на ноль делить нельзя, поэтому делим ноль на второе число
+		MUL_ZM_Z(z1);
+		MUL_ZM_Z(z2);
+		tempZ = SUB_ZZ_Z(z1, z2);
+		if (tempZ.b == 1) MUL_ZM_Z(tempZ);
+		MUL_ZM_Z(z1);
+		MUL_ZM_Z(z2);
 		return tempZ;
 	}
 	else
-		if ((POZ_Z_D(z1) == 2) && (POZ_Z_D(z2) == 1))  // если первое число положительное, а второе - отрицательное
+		if (((POZ_Z_D(z2) == 1) && (POZ_Z_D(z1) == 0)) || ((POZ_Z_D(z2) == 0) && (POZ_Z_D(z1) == 1)))     // если одно = 0, а второе <0
 		{
-			MUL_ZM_Z(z2);	// просто меняем знак z2, так как частное от z1/|z2| = -(z1/z2) 
-			tempZ = SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, DIV_ZZ_Z(z1, z2)));
-			MUL_ZM_Z(z2);	// не забываем вернуть исходный знак z2
+			tempZ.A = new int[1];                                           // tempZ=0, вносим 0 в структуру
+			tempZ.A[0] = 0;
+			tempZ.n = 0;
+			tempZ.b = 0;
 			return tempZ;
-		}			// данная расстановка знаков позволяет просто поменять знак
-	if ((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 2)) // если первое число отрицательное, а второе - положительное
-	{
-		Integer E, E_1;
-		E.A = new int[1];
-		E.A[0] = 1;
-		E.n = 0;
-		E.b = 0;
-		E_1 = SUB_ZZ_Z(divZ, E);	// -17 = 5*(-3) + (-2) - недопустимо, поэтому
-					// делаем -17 = 5*(-4) + 3 (уменьшаем частное на 1)
-		tempZ = SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, E_1));
-		return tempZ;
-	}
-	if ((POZ_Z_D(z1) == 1) && (POZ_Z_D(z2) == 1)) // если оба числа отрицательны
-	{
-		Integer E, E_1;
-		E.A = new int[1];
-		E.A[0] = 1;
-		E.n = 0;
-		E.b = 0;
-		E_1 = ADD_ZZ_Z(divZ, E);	// -17 = (-5)*3 + (-2) - недопустимо, поэтому
-					// делаем -17 = (-5)*4 + 3 (увеличиваем частное на 1)
-		tempZ = SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, E_1));
-		return tempZ;
-	}
-	if ((POZ_Z_D(z1) == 2) && (POZ_Z_D(z2) == 2)) // если оба числа положительны
-	{
-		tempZ = SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, divZ));
-		return tempZ;
-	}
+		}
+		else
+			if (((POZ_Z_D(z2) == 1) && (POZ_Z_D(z1) == 2)) || ((POZ_Z_D(z2) == 2) && (POZ_Z_D(z1) == 1)))     // если одно из чисел
+			{                                                                           // отрицательное, а второе - положительное
+				int k = 0;
+				if (POZ_Z_D(z2) == 1)
+					MUL_ZM_Z(z2);             // меняем знак у отрицательного числа
+				else
+				{
+					MUL_ZM_Z(z1);
+					k = 1;
+				}
+				if (k == 1)
+				{
+					if (COM_NN_D(N, N2) == 2)       // если модуль первого больше модуля второго
+					{
+						MUL_ZM_Z(z1);
+						return z2;                  // z1=-12, z2=5; mod(-12,5) = -12*0 + 5;
+					}
+					else
+					{
+						MUL_ZM_Z(z1);               // не забываем вернуть знак числу, у которого его поменяли
+						tempZ = SUB_ZZ_Z(z2, MUL_ZZ_Z(z1, DIV_ZZ_Z(z2, z1)));
+						return tempZ;
+					}
+				}
+				else
+				{
+					if (COM_NN_D(N, N2) == 2)       // если модуль первого больше модуля второго
+					{
+						MUL_ZM_Z(z2);           // не забываем вернуть знак числу, у которого его поменяли
+						tempZ = SUB_ZZ_Z(z1, MUL_ZZ_Z(DIV_ZZ_Z(z1, z2), z2));
+						return tempZ;
+					}
+					else
+					{
+						MUL_ZM_Z(z2);            // не забываем вернуть знак числу, у которого его поменяли
+						return z1;               // z1=5, z2=-12; mod(5,-12) = -12*0 + 5;
+					}
+				}
+			}
+			else
+				if ((POZ_Z_D(z1) == 2) && (POZ_Z_D(z2) == 2))  // если оба числа положительны
+				{
+					if (COM_NN_D(N, N2) == 2)
+						tempZ = SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, DIV_ZZ_Z(z1, z2)));
+					else tempZ = SUB_ZZ_Z(z2, MUL_ZZ_Z(z1, DIV_ZZ_Z(z2, z1)));
+					return tempZ;
+				}
 }

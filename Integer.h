@@ -1,6 +1,7 @@
 #pragma once
 #include "StructInteger.h"
 #include "StructNatural.h"
+void CorrectInput(string s, int& j); //проверка на корректность ввода
 Integer Input(); // ввод
 void Output(struct Integer z); // вывод
 Natural ABS_Z_N(struct Integer& z); // Z-1
