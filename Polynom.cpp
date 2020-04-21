@@ -21,30 +21,31 @@ void Obnulenie(Fraction& fract) // Обнуление неиспользуемой ячейки памяти, служи
 void inputPolynom(Polynom& polynom) // Функция ввода многочлена
 { 
 	polynom.C = (Fraction*)malloc(sizeof(Fraction)*1); // Выделение минимальной памяти
-	int i = 0; char s;
+	long i = 0; char s;
+	polynom.m = 0;
 	cout << "Остановить ввод - 0, Продолжить ввод - 1\n";
 	do
 	{
 		cout << "Введите степень одночлена = ";
 		cin >> i; 
-		if (i > polynom.m) polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (i + 1)); // Выделение памяти для хранение коэф-тов, индекс соответствует степени икса
+		if (i > polynom.m) { polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (i + 1)); polynom.m = i; } // Выделение памяти для хранение коэф-тов, индекс соответствует степени икса
 		if (polynom.C == NULL) exit(1);
 		cout << "Введите числетель и знаменатель коэффициента = ";
 		InputFraction(polynom.C[i]);
-		if (i > polynom.m) polynom.m = i;
 		cout << "Продолжить ввод?\n";
 		cin >> s;
 	} while (s!='0'); // Знак остановки ввода
 	for (i = polynom.m; i >= 0; i--)
 	{
-		if (polynom.C[i].denum.length < 0) Obnulenie(polynom.C[i]); // Проверка на длину числа в знаменателе и обнуление неиспользующихся ячеек 
+		if (polynom.C[i].denum.length <= 0) Obnulenie(polynom.C[i]); // Проверка на длину числа в знаменателе и обнуление неиспользующихся ячеек 
 	}
 }
 
-void outputPolynom(Polynom polynom) // Функция ввывода многочлена
+void outputPolynom(Polynom& polynom) // Функция ввывода многочлена
 {
 	bool firstpos = true; // Переменная для проверки первенства вывода 
-	for (int i = polynom.m; i >= 0; i--)
+	bool nol = true; // Переменная для проверки нулевого вывода
+	for (long i = polynom.m; i >= 0; i--)
 	{
 		if (polynom.C[i].denum.A != NULL && polynom.C[i].num.A != NULL)
 		{
@@ -52,9 +53,15 @@ void outputPolynom(Polynom polynom) // Функция ввывода многочлена
 			OutputFraction(polynom.C[i]);
 			cout << "x^" << i;
 			firstpos = false; // Сброс первенства вывода
+			nol = false; // Сброс нулевого вывода
+			free(polynom.C[i].num.A);
+			free(polynom.C[i].denum.A);
 		}
 	}
+	if (nol) cout << "0";
 	cout << '\n';
+	free(polynom.C);
+	polynom.m = 0;
 }
 
 Polynom ADD_PP_P(Polynom polynom, Polynom polynom2) //P-1 Сложение многочленов
@@ -62,19 +69,20 @@ Polynom ADD_PP_P(Polynom polynom, Polynom polynom2) //P-1 Сложение многочленов
 	Polynom polynom3; // Третий многочлен для хранения суммы
 	if (polynom.m <= polynom2.m) polynom3.m = polynom2.m;
 	else polynom3.m = polynom.m;
-	polynom3.C = (Fraction*)malloc(sizeof(Fraction) * (polynom3.m + 1));
+	polynom3.C = (Fraction*)calloc(sizeof(Fraction), (polynom3.m + 1));
 	Fraction k1, k2, k3; // Переменные для хранения коэф-тов
-	for (int i = polynom3.m; i >= 0; i--)
+	for (long i = polynom3.m; i >= 0; i--)
 	{
-		Obnulenie(polynom3.C[i]);
 		Obnulenie(k1);
 		Obnulenie(k2);
 		Obnulenie(k3);
-		if (polynom.C[i].num.A != NULL && i <= polynom.m) {  // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
-			k1 = polynom.C[i];
+		if (i <= polynom.m)  // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
+		{ 
+			if (polynom.C[i].num.A != NULL ) k1 = polynom.C[i];
 		}
-		if (polynom2.C[i].num.A != NULL && i <= polynom2.m) { // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
-			k2 = polynom2.C[i];
+		if (i <= polynom2.m) // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
+		{ 
+			if (polynom2.C[i].num.A != NULL) k2 = polynom2.C[i];
 		}
 		if (k1.num.A != NULL && k2.num.A != NULL) { k3 = ADD_QQ_Q(k1, k2); } // Третья переменная хранящая сумму первых двух значений
 		else  if (k1.num.A != NULL || k2.num.A != NULL)
@@ -95,19 +103,20 @@ Polynom SUB_PP_P(Polynom polynom, Polynom polynom2) //P-2
 	Polynom polynom3; // Третий многочлен для хранения разности
 	if (polynom.m <= polynom2.m) polynom3.m = polynom2.m;
 	else polynom3.m = polynom.m;
-	polynom3.C = (Fraction*)malloc(sizeof(Fraction) * (polynom3.m + 1));
+	polynom3.C = (Fraction*)calloc(sizeof(Fraction), (polynom3.m + 1));
 	Fraction k1, k2, k3; // Переменные для хранения коэф-тов
-	for (int i = polynom3.m; i >= 0; i--)
+	for (long i = polynom3.m; i >= 0; i--)
 	{
-		Obnulenie(polynom3.C[i]);
 		Obnulenie(k1);
 		Obnulenie(k2);
 		Obnulenie(k3);
-		if (polynom.C[i].num.A != NULL && i <= polynom.m) {  // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
-			k1 = polynom.C[i];
+		if (i <= polynom.m)  // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
+		{
+			if (polynom.C[i].num.A != NULL) k1 = polynom.C[i];
 		}
-		if (polynom2.C[i].num.A != NULL && i <= polynom2.m) { // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
-			k2 = polynom2.C[i];
+		if (i <= polynom2.m) // Если значение многочлена в определенной степени не равно значению по умолчанию, помещаем ее в переменную
+		{
+			if (polynom2.C[i].num.A != NULL) k2 = polynom2.C[i];
 		}
 		if (k1.num.A != NULL && k2.num.A != NULL) { k3 = SUB_QQ_Q(k1, k2); } // Третья переменная хранящая разность первых двух значений
 		else  if (k1.num.A != NULL || k2.num.A != NULL)
@@ -125,11 +134,14 @@ Polynom SUB_PP_P(Polynom polynom, Polynom polynom2) //P-2
 
 Polynom MUL_PQ_P(Polynom polynom, Fraction a) //P-3 Умножение многочлена на рациональное число
 {
-	for (int i = polynom.m; i >= 0; i--)
+	for (long i = polynom.m; i >= 0; i--)
 	{ 
-		if (polynom.C[i].num.A != NULL) polynom.C[i] = MUL_QQ_Q(polynom.C[i], a); // Умножение коэф-та на рац. число
-		if (polynom.C[i].num.A[0] == 0 && polynom.C[i].num.n == 0) Obnulenie(polynom.C[i]); // Обнуление ячеек с нулем в числителе
-		else polynom.C[i] = RED_Q_Q(polynom.C[i]); // Сокращение дробей
+		if (polynom.C[i].num.A != NULL)
+		{
+			polynom.C[i] = MUL_QQ_Q(polynom.C[i], a); // Умножение коэф-та на рац. число
+			if (polynom.C[i].num.A[0] == 0 && polynom.C[i].num.n == 0) Obnulenie(polynom.C[i]); // Обнуление ячеек с нулем в числителе
+			else polynom.C[i] = RED_Q_Q(polynom.C[i]); // Сокращение дробей
+		}
 	}
 	return(polynom);
 }
@@ -138,9 +150,8 @@ Polynom MUL_Pxk_P(Polynom polynom, int k) //P-4 Умножение многочлена на x^k
 {
 	Polynom polynom2; // Второй многочлен для хранения результата
 	polynom2.m = polynom.m + k; // Степень второго многочлена больше степени первого на k
-	polynom2.C = (Fraction*)malloc(sizeof(Fraction) * (polynom2.m + 1));
-	for (int i = polynom2.m; i >= 0; i--) Obnulenie(polynom2.C[i]);
-	for (int i = polynom.m; i >= 0; i--)
+	polynom2.C = (Fraction*)calloc(sizeof(Fraction), (polynom2.m + 1));
+	for (long i = polynom.m; i >= 0; i--)
 	{
 		if (polynom.C[i].num.A != NULL) polynom2.C[i + k] = polynom.C[i];
 	}
@@ -158,23 +169,22 @@ void DEG_P_N(Polynom polynom) //P-6 Степень многочлена
 	cout << "Степень многочлена = " << polynom.m; // Степень многочлена хранится в памяти
 }
 
-Fraction FAC_P_Q(Polynom& polynom) //P-7 Вынесение из многочлена НОК знаменателей коэффициентов и НОД числителей
+Fraction FAC_P_Q(Polynom& polynom, int count) //P-7 Вынесение из многочлена НОК знаменателей коэффициентов и НОД числителей
 {                                  // Функция возвращает рац. число НОД/НОК и изменяет вводимый многочлен(деление числителей на НОД и знаменателей на НОК)
-	Fraction HODHOK;
-	Natural temp1, temp2, edin;				//Переменные для хранения промежуточных НОД и НОК
-	edin.A = (int*)malloc(sizeof(int) * 1); // При делении знаменателя на НОК всегда получается единица
-	edin.A[0] = 1; edin.length = 1;         // Мы ее инициализируем для дальнейшего присвоения
-	int count = 0;
-	for (int i = polynom.m; i >= 0; i--)
-	{
-		if (polynom.C[i].num.A != NULL) count++; // Подсчет кол-ва одночленов
-	}
-	if (count < 2) cout << "Ошибка ввода"; // Если ввели меньше двух одночленов
-	else if (count == 2) // Если два одночлена
+	Fraction HODHOK; // Инициализация НОД/НОК по умолчанию (1/1)
+	HODHOK.num.A = (int*)calloc(sizeof(int), 1);
+	HODHOK.denum.A = (int*)calloc(sizeof(int), 1);
+	HODHOK.num.A[0] = 1;
+	HODHOK.num.b = 0;
+	HODHOK.num.n = 0;
+	HODHOK.denum.A[0] = 1;
+	HODHOK.denum.length = 1;
+	Natural temp1, temp2;				//Переменные для хранения промежуточных НОД и НОК
+	if (count == 2) // Если два одночлена
 	{
 		int pos1 = polynom.m; // Переменная для записи позиция первого коэф-та
 		int pos2 = 0; // Переменная для записи позиция второго коэф-та
-		for (int i = polynom.m - 1; i >= 0; i--) { if (polynom.C[i].num.A != NULL) pos2 = i; break; } // Нахождение позиции второго коэф-та
+		for (long i = polynom.m - 1; i >= 0; i--) { if (polynom.C[i].num.A != NULL) { pos2 = i; break; }} // Нахождение позиции второго коэф-та
 		temp1 = GCF_NN_N(TRANS_Z_N(polynom.C[pos1].num), TRANS_Z_N(polynom.C[pos2].num)); // НОД
 		temp2 = LCM_NN_N(polynom.C[pos1].denum, polynom.C[pos2].denum); // НОК
 		HODHOK.num = TRANS_N_Z(temp1); // Присвоение НОД и НОК
@@ -184,10 +194,10 @@ Fraction FAC_P_Q(Polynom& polynom) //P-7 Вынесение из многочлена НОК знаменателе
 	{
 		int pos1 = polynom.m;
 		int pos2 = 0;
-		for (int i = polynom.m - 1; i >= 0; i--) { if (polynom.C[i].num.A != NULL) pos2 = i; break; }
+		for (long i = polynom.m - 1; i >= 0; i--) { if (polynom.C[i].num.A != NULL) { pos2 = i; break; }}
 		temp1 = GCF_NN_N(TRANS_Z_N(polynom.C[pos1].num), TRANS_Z_N(polynom.C[pos2].num)); //НОД первых двух числителей
 		temp2 = LCM_NN_N(polynom.C[pos1].denum,polynom.C[pos2].denum); //НОК первых двух знаменателей
-		for (int i = pos2 - 1; i >= 0; i--)
+		for (long i = pos2 - 1; i >= 0; i--)
 		{
 			if (polynom.C[i].num.A != NULL)
 			{
@@ -199,35 +209,34 @@ Fraction FAC_P_Q(Polynom& polynom) //P-7 Вынесение из многочлена НОК знаменателе
 		HODHOK.denum = temp2;
 	}
 	Natural chastn; //Вспомогательная переменная, в которую попадает результат деления НОКа на знаменатель для последущего переворота дроби
-	for (int i = polynom.m; i >= 0; i--) //Деление числителей на НОД и знаменателей на НОК
+	for (long i = polynom.m; i >= 0; i--) //Деление числителей на НОД и знаменателей на НОК
 	{
 		if (polynom.C[i].num.A != NULL)
 		{
-			polynom.C[i].num = DIV_ZZ_Z(polynom.C[i].num, HODHOK.num);
-			chastn = DIV_NN_N(HODHOK.denum, polynom.C[i].denum); 
-			polynom.C[i].num = MUL_ZZ_Z(polynom.C[i].num, TRANS_N_Z(chastn)); // Умножение числителя на вспомогательную перменную
-			polynom.C[i].denum = edin; // Присвоение знаменателю единицы
+			polynom.C[i] = DIV_QQ_Q(polynom.C[i], HODHOK);
+			polynom.C[i] = RED_Q_Q(polynom.C[i]);
 		}
 	}
 	return(HODHOK);
 }
+
 Polynom MUL_PP_P(Polynom polynom, Polynom polynom2) //P-8 Умножение многочленов
 {
 	Fraction fraction1, fraction2, fraction3; // Переменные для удобного подсчета произведения коэф-тов
 	Polynom polynom3; //Произведение
 	polynom3.m = polynom.m + polynom2.m; //Максимальная степень произведения это сумма максимальных степеней множителей
 	int count1 = 0, count2 = 0;
-	for (int i = polynom.m; i >= 0; i--)
+	for (long i = polynom.m; i >= 0; i--)
 	{
 		if (polynom.C[i].num.A != NULL) count1++; // Подсчет кол-ва ненулевых коэф-тов
 	}
-	for (int i = polynom2.m; i >= 0; i--)
+	for (long i = polynom2.m; i >= 0; i--)
 	{
 		if (polynom2.C[i].num.A != NULL) count2++; // Подсчет кол-ва ненулевых коэф-тов
 	}
 	int j = count1 * count2 - 1; // При умножении двух многочленов получается count1*count2 ненулевых членов
-	polynom3.C = (Fraction*)malloc(sizeof(Fraction) * (polynom3.m + 1)); //Создание третьего многочлена
-	for (int i = polynom.m; i >= 0 && j >= 0; i--) //Перемножение каждого одночлена из первого многочлена на каждый одночлен второго
+	polynom3.C = (Fraction*)calloc(sizeof(Fraction), (polynom3.m + 1)); //Создание третьего многочлена
+	for (long i = polynom.m; i >= 0 && j >= 0; i--) //Перемножение каждого одночлена из первого многочлена на каждый одночлен второго
 	{
 		if (polynom.C[i].num.A != NULL)
 		{
@@ -245,7 +254,7 @@ Polynom MUL_PP_P(Polynom polynom, Polynom polynom2) //P-8 Умножение многочленов
 			}
 		}
 	}
-	for (int i = polynom3.m; i >= 0; i--) //Обнуление и сокращение дробей коэф-ов
+	for (long i = polynom3.m; i >= 0; i--) //Обнуление и сокращение дробей коэф-ов
 	{
 		if (polynom3.C[i].num.A != NULL)
 			if (polynom3.C[i].num.A[0] == 0 && polynom3.C[i].num.n == 0) Obnulenie(polynom3.C[i]);
@@ -264,10 +273,10 @@ Polynom DIV_PP_P(Polynom polynom, Polynom polynom2) //P-9 Частное от деления мно
 		polynom3.m = polynom.m - polynom2.m; // Степень многочлена частного = степень многочлена делимого - степень многочлена в делителе
 		temp1.m = polynom.m; // Для умножения
 		temp2.m = polynom3.m; // Для вычитания
-		polynom3.C = (Fraction*)malloc(sizeof(Fraction) * (polynom3.m + 1)); //Создание третьего и временных многочленов
-		temp1.C = (Fraction*)malloc(sizeof(Fraction) * (temp1.m + 1));
-		temp2.C = (Fraction*)malloc(sizeof(Fraction) * (temp2.m + 1));
-		for (int i = polynom.m; i >= polynom2.m; i--) 
+		polynom3.C = (Fraction*)calloc(sizeof(Fraction), (polynom3.m + 1)); //Создание третьего и временных многочленов
+		temp1.C = (Fraction*)calloc(sizeof(Fraction), (temp1.m + 1));
+		temp2.C = (Fraction*)calloc(sizeof(Fraction), (temp2.m + 1));
+		for (long i = polynom.m; i >= polynom2.m; i--)
 		{
 			if (polynom.C[i].num.A != NULL)
 			{
@@ -287,7 +296,7 @@ Polynom MOD_PP_P(Polynom polynom, Polynom polynom2) //P-10 Остаток от деления мн
 	Polynom Chast = DIV_PP_P(polynom, polynom2); // Третья переменная, хранящая частное от деления многочленов
 	Polynom Proizved = MUL_PP_P(polynom2, Chast); // Четвертая переменная, хранящая произведение частного и делителя
 	Polynom Ost = SUB_PP_P(polynom, Proizved); // Пятая переменная, хранящая разность делимого и произведения делителя на частное - остаток
-	for (int i = Ost.m; i >= 0; i--)
+	for (long i = Ost.m; i >= 0; i--)
 	{
 		if (Ost.C[i].num.A != NULL) 
 		if (Ost.C[i].num.A[0] == 0 && Ost.C[i].num.n == 0) Obnulenie(Ost.C[i]); // Обнуление коэф-ов с 0 в числителе
@@ -304,7 +313,7 @@ Polynom GCF_PP_P(Polynom polynom, Polynom polynom2) //P-11 НОД многочленов
 	{
 		bool a = true; // Переменная для проверки многочлена Ost на абсолютную пустоту
 		Ost = MOD_PP_P(polynom, polynom2); // Четвертый многочлен, хранящая остаток от деления многочленов
-		for (int i = Ost.m; i >= 0;i--)
+		for (long i = Ost.m; i >= 0;i--)
 		{
 			if (Ost.C[i].num.A != NULL) a = false;
 		}
@@ -313,7 +322,7 @@ Polynom GCF_PP_P(Polynom polynom, Polynom polynom2) //P-11 НОД многочленов
 		polynom2 = Ost; // Действуем в соответствии с алгоритмом Евклида: делитель заменяем остатком от деления
 	}
 	Fraction x = polynom2.C[polynom2.m]; // Переменная для записи старшего коэф-та многочлена
-	for (int i = polynom2.m; i >= 0; i--)
+	for (long i = polynom2.m; i >= 0; i--)
 	{
 		if (polynom2.C[i].num.A != NULL)
 		{
@@ -328,8 +337,8 @@ Polynom DER_P_P(Polynom polynom) //P-12 Производная многочлена
 {
 	Polynom polynom2; // Многочлен для хранения результата
 	polynom2.m = polynom.m - 1;
-	polynom2.C = (Fraction*)malloc(sizeof(Fraction) * (polynom2.m + 1)); //Создание второго многочлена
-	for (int i = polynom.m; i >= 1; i--)
+	polynom2.C = (Fraction*)calloc(sizeof(Fraction), (polynom2.m + 1)); //Создание второго многочлена
+	for (long i = polynom.m; i >= 1; i--)
 	{
 		if (polynom.C[i].num.A != NULL)
 		{
@@ -341,13 +350,15 @@ Polynom DER_P_P(Polynom polynom) //P-12 Производная многочлена
 			s = ss.str(); // Перевод из числового значения степени к строчке
 			N.length = s.length();
 			N.A = (int*)malloc(sizeof(int) * N.length); int j = 0;
-			for (int i = N.length - 1; i >= 0; i--)
+			for (int k = N.length - 1; k >= 0; k--)
 			{
-				N.A[j] = s[i] - 48; j++;
+				N.A[j] = s[k] - 48; j++;
 			}
 			I = TRANS_N_Z(N);
 			polynom2.C[i - 1] = MUL_QQ_Q(polynom.C[i], TRANS_Z_Q(I)); // Запись результата произведения в ячейку i - 1 второго многочлена 
 			polynom2.C[i - 1] = RED_Q_Q(polynom2.C[i - 1]); // Сокращение дроби
+			free(N.A);
+			free(I.A);
 		}
 	}
 	return(polynom2);
@@ -366,20 +377,21 @@ int main() {
 	setlocale(LC_ALL, "rus");
 	Polynom polynom, polynom2, polynom3;
 	Fraction fraction;
+	int x;
 
-	//cout << "Введите 1 полином\n";
-	//inputPolynom(polynom);
-	//outputPolynom(polynom);
+	cout << "Введите 1 полином\n";
+	inputPolynom(polynom);
 	//cout << "Введите 2 полином\n";
 	//inputPolynom(polynom2);
-	//outputPolynom(polynom2);
+	fraction = FAC_P_Q(polynom);
+	outputPolynom(polynom);
 	//cout << "Введите 2 полином(степень многочлена не больше первого)\n";
 	//inputPolynom(polynom2);
 	//outputPolynom(polynom2);
 
-	cout << "Введите полином\n";
-	inputPolynom(polynom);
-	outputPolynom(polynom);
+	//cout << "Введите полином\n";
+	//inputPolynom(polynom);
+	//outputPolynom(polynom);
 
 	//cout << "Введите числитель и знаменатель рационального числа = ";
 	//InputFraction(a);
@@ -404,11 +416,11 @@ int main() {
 	//polynom3 = MOD_PP_P(polynom, polynom2);
 	//polynom3 = GCF_PP_P(polynom, polynom2);
 	//polynom3 = DER_P_P(polynom);
-	polynom3 = NMR_P_P(polynom);
+	//polynom3 = NMR_P_P(polynom);
 	
-	cout << "Результат\n";
+	//cout << "Результат\n";
 
-	outputPolynom(polynom3);
+	//outputPolynom(polynom3);
 
 	//OutputFraction(fraction);
 	//cout << " ";

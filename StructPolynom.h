@@ -5,5 +5,5 @@
 struct Polynom 
 {
 	Fraction* C;
-	int m;         
+	long m;
 };
