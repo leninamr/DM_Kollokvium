@@ -6,8 +6,21 @@
 using namespace std;
 //Ввод дроби
 void InputFraction(struct Fraction &q) {
+	int t = 0;
+	char s;
+	while (t!=1) {
 	q.num=Input();          //вводим числитель (целое число)
-	q.denum=InputNatural(); //вводим знаменатель (натуральное число)
+	cin >> s;
+	if (s!='/') {
+		cout << "Введите правильно!\n";
+		continue;
+	}
+		q.denum = InputNatural(); //вводим знаменатель (натуральное число)
+		if (q.denum.A[0] == 0) {
+			cout << "Знаменатель не может быть равен нулю!\n";
+			continue;
+		}t = 1;
+	}
 }
 //Вывод дроби
 void OutputFraction(struct Fraction q) {
