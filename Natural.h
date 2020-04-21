@@ -1,10 +1,11 @@
 #pragma once
-
-#include "StructNatural.h"
-Natural InputNatural();
+#include <string>
+#include "StructNatural.h";
+//void InputNaturalFor(Natural& N, string);
+void InputNatural(Natural& N, int n);
+void DeleteNatural(Natural& N);
 void OutNatural(Natural N);
 void Copy(Natural& temp, Natural N);
-void DeleteNatural(Natural& N);
 int COM_NN_D(Natural N1, Natural N2);
 int NZER_N_B(Natural N);
 void ADD_1N_D(Natural& N);
