@@ -1,13 +1,13 @@
 #pragma once
 #include "StructInteger.h"
 #include "StructNatural.h"
-#include <string> 
-#include <iostream> 
-using namespace std;
+#include <string>
+#include <iostream>
 
-void CorrectInput(string s, int& j); //ïðîâåðêà íà êîððåêòíîñòü ââîäà
-Integer Input(); // ââîä
-void Output(struct Integer z); // âûâîä
+void CorrectInput(std::string s, int& j);
+void Input(Integer& Z, int i);
+Integer Input2(std::string s);
+void Output(struct Integer z); // 
 Natural ABS_Z_N(struct Integer& z); // Z-1
 int POZ_Z_D(struct Integer z); // Z-2
 void MUL_ZM_Z(struct Integer& z);  // Z-3
