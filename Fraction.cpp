@@ -62,8 +62,11 @@ void OutputFraction(struct Fraction q) {
 	if (q.num.b == 1) cout << '-';         //выводим числитель
 	for (int i = q.num.n; i >= 0; i--)
 		cout << q.num.A[i];
-	cout << '/';
-	OutNatural(q.denum);                   //выводим знаменатель
+	if (q.denum.A[0] != 1 && q.denum.length != 1||(q.denum.A[0] != 1 && q.denum.length == 1)) {
+		cout << '/';
+		OutNatural(q.denum);                   //выводим знаменатель (если он не равен 1)
+	}
+	else cout << '\n';
 }
 //Q-1
 Fraction RED_Q_Q(struct Fraction q) {
