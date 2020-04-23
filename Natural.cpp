@@ -4,30 +4,27 @@
 #include "Natural.h";
 using namespace std;
 
+bool CheckIfCorrect(string s)
+{	//проверка на правильность введенного числа ака защита от глупых пользователей
+	int a;
+	if (s[0] == '0' && s.length() != 1) return false; //если число не 0, но начинается с 0
+	for (int i = 0; i < s.length(); i++)
+	{
+		a = s[i];
+		if ((47 >= a) || (a >= 58)) return false; //если в числе лишние символы (не цифры)
+	}
+	return true;
+}
+
 void InputNaturalFor(Natural& N, string s)
-{
+{	//сюда подается уже точно корректное число
 	int k = 0;
 	N.length = s.length();
-	N.A = (int*)malloc(sizeof(int) * N.length); int i = 0, j = 0, a;
-
-	while (1) {
-		j = 0;
-		for (i = N.length - 1; i >= 0; i--) //нулевой элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, длина равна 3
-		{
-			a = s[i];
-			if (a == 48 && i == 0 && N.length != 1) { cout << "that's starting with zero fuck off\n"; break; } //если число не 0, но начинается с 0
-			if ((47 < a) && (a < 58))
-			{
-				N.A[j] = a - 48; j++;	//преобразование символа в число (в таблице ASCII 0 - 48)
-			}
-			else {
-				cout << "oh shit here we go again. Попробуй еще" << "\n"; break; //если в числе лишние символы (не цифры)
-			}
-		}
-		if (i == -1) break;
-		cin >> s;
-		N.length = s.length();
-		N.A = (int*)realloc(N.A, sizeof(int) * N.length);
+	N.A = (int*)malloc(sizeof(int) * N.length); 
+	int i, j = 0;
+	for (i = N.length - 1; i >= 0; i--) //нулевой элемент массива - первое число, т.е. 123, А0 = 3 А1 = 2 А2 = 1, длина равна 3
+	{
+			N.A[j] = s[i] - 48; j++;	//преобразование символа в число (в таблице ASCII 0 - 48)
 	}
 }
 
@@ -38,7 +35,12 @@ void InputNatural(Natural& N, int n)
 	if (n == 1) cout << "Введите первое число: ";
 	if (n == 2) cout << "Введите второе число: ";
 	cin >> s;
-	InputNaturalFor(N, s);			
+	while (CheckIfCorrect(s) == false)
+	{
+		cout << "Вы ввели число неверно. Попробуйте еще раз: ";
+		cin >> s;
+	}
+	InputNaturalFor(N, s);
 }
 
 int NZER_N_B(Natural N)

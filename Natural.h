@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 #include "StructNatural.h";
-//void InputNaturalFor(Natural& N, string);
+using namespace std;
+
+bool CheckIfCorrect(string s);
+void InputNaturalFor(Natural& N, string);
 void InputNatural(Natural& N, int n);
 void DeleteNatural(Natural& N);
 void OutNatural(Natural N);
