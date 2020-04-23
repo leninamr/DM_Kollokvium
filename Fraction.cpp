@@ -5,8 +5,11 @@
 #include "Fraction.h"
 using namespace std;
 //Ввод дроби
-void InputFraction(struct Fraction& q) {
+void InputFraction(struct Fraction& q, int n) {
 	string s;
+	if (n == 0) cout << "Введите дробь: ";
+	if (n == 1) cout << "Введите первую дробь: ";
+	if (n == 2) cout << "Введите вторую дробь: ";
 	cin >> s;
 	q = InputFraction2(s);
 }
@@ -19,11 +22,16 @@ Fraction InputFraction2(string s) {
 	while (1) {
 		i = 0;
 		s2 = "";
+		while (s[0] = '/')
+		{
+			cout << "\nОшибка! Введите корректно дробь:\n";
+			cin >> s;
+		}
 		while (s[i] != '/' && s2.length() < s.length())
 		{
 			s2 = s2 + s[i];
 			if (s2.length() == s.length() - 1 && s[i + 1] == '/') {
-				cout << "\nОiибка! Введите корректно дробь:\n";
+				cout << "\nОшибка! Введите корректно дробь:\n";
 				cin >> s;
 				t = 1;
 				break;
@@ -39,21 +47,11 @@ Fraction InputFraction2(string s) {
 	else {
 		string s3;
 		t = 0;
-		while (1) {
-			s3 = "";
-			for (int j = i + 1; j < s.length(); j++) {
-				s3 = s3 + s[j];
-			}
-			InputNaturalFor(q.denum, s3);
-			if (q.denum.A[0] == 0)
-				while (1) {
-					cout << "Знаменатель не может быть равен 0!\n";
-					cin >> s3;
-					InputNaturalFor(q.denum, s3);
-					if (q.denum.A[0] != 0) break;
-				}
-			break;
+		s3 = "";
+		for (int j = i + 1; j < s.length(); j++) {
+			s3 = s3 + s[j];
 		}
+		InputNaturalFor(q.denum, s3);
 	}
 	return q;
 }
