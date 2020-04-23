@@ -2,7 +2,8 @@
 #include "StructFraction.h"
 #include "Natural.h"
 #include "Integer.h"
-void InputFraction(struct Fraction&);                 //ввод дроби
+void InputFraction(struct Fraction&, int);            //ввод дроби 
+Fraction InputFraction2(string);                      //ввод дроби через строку
 void OutputFraction(struct Fraction);                 //вывод дроби
 Fraction RED_Q_Q(struct Fraction);                    //Q-1
 void INT_Q_B(Fraction);                               //Q-2
