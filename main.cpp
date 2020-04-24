@@ -9,463 +9,557 @@
 #include "Interface.h"
 
 #include <iostream>
-#include <windows.h>
-//#include <stdlib.h>
+//#include <windows.h>
+#include <sstream>
 
 using namespace std;
 
 int main() {
 
-	setlocale(LC_ALL, "Russian");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
-	int type = 100;
-	int module = 100;
-	int count = 0;
-	while ((type != 0)) {
-		Description();
-		cin >> type;
-		switch (type) {
-		case 0:
-			break;
-		case 1:
-			system("cls");
-			Natural n1;
-			Natural n2;
-			module = 100;
-			while (module != -1) {
-				D_Natural();
-				cin >> module;
-				switch (module) {
-				case -1:
-					system("cls");
-					break;
-				case 1:
-					cout << "\nÑðàâíåíèå íàòóðàëüíûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					if (COM_NN_D(n1, n2) == 2) cout << "\nÏåðâîå áîëüøå âòîðîãî\n";
-					if (COM_NN_D(n1, n2) == 1) cout << "\nÂòîðîå áîëüøå ïåðâîãî\n";
-					if (COM_NN_D(n1, n2) == 0) cout << "\n×èñëà ðàâíû\n";
-					cont();
-					system("cls");
-					break;
-				case 2:
-					cout << "\nÏðîâåðêà íà íîëü\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
-					if (NZER_N_B(n1) == 1) cout << "\n×èñëî ðàâíî 0\n";
-					if (NZER_N_B(n1) == 0) cout << "\n×èñëî íå ðàâíî 0\n";
-					cont();
-					system("cls");
-					break;
-				case 3:
-					cout << "\nÏðèáàâëåíèå ê ÷èñëó åäèíèöû\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
-					ADD_1N_D(n1);
-					cout << "\nÐåçóëüòàò: "; OutNatural(n1); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 4:
-					cout << "\nÑëîæåíèå íàòóðàëüíûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(ADD_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 5:
-					cout << "\nÂû÷èòàíèå èç ïåðâîãî áîëüøåãî íàòóðàëüíîãî ÷èñëà âòîðîãî ìåíüøåãî èëè ðàâíîãî\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(SUB_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 6:
-					int d;
-					cout << "\nÓìíîæåíèå íàòóðàëüíîãî ÷èñëà íà öèôðó\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå öèôðó: "; cin >> d;
-					MUL_ND_N(n1, d);
-					cout << "\nÐåçóëüòàò: "; OutNatural(n1); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 7:
-					cout << "\nÓìíîæåíèå íàòóðàëüíîãî ÷èñëà íà 10^k\nÂâåäèòå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå k: "; cin >> d;
-					cout << "\nÐåçóëüòàò: "; OutNatural(MUL_Nk_N(n1, d)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 8:
-					cout << "\nÓìíîæåíèå íàòóðàëüíûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(MUL_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 9:
-					cout << "\nÂû÷èòàíèå èç íàòóðàëüíîãî äðóãîãî íàòóðàëüíîãî, óìíîæåííîãî íà öèôðó äëÿ ñëó÷àÿ ñ íåîòðèöàòåëüíûì ðåçóëüòàòîì"
-						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÂâåäèòå öèôðó: "; cin >> d;
-					cout << "\nÐåçóëüòàò: "; OutNatural(SUB_NDN_N(n1, n2, d)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 10:
-					cout << "\nÂû÷èñëåíèå ïåðâîé öèôðû äåëåíèÿ áîëüøåãî íàòóðàëüíîãî íà ìåíüøåå, äîìíîæåííîå íà 10^k,ãäå k - íîìåð ïîçèöèè ýòîé öèôðû (íîìåð ñ÷èòàåòñÿ ñ íóëÿ)"
-						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(DIV_NN_Dk(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 11:
-					cout << "\n×àñòíîå îò äåëåíèÿ áîëüøåãî íàòóðàëüíîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)"
-						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(DIV_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 12:
-					cout << "\nÎñòàòîê îò äåëåíèÿ áîëüøåãî íàòóðàëüíîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)"
-						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(MOD_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 13:
-					cout << "\nÍÎÄ íàòóðàëüíûõ ÷èñåë"
-						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(GCF_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 14:
-					cout << "\nÍÎÊ íàòóðàëüíûõ ÷èñåë"
-						"\nÂâåäèòå ïåðâîå ÷èñëî: "; n1 = InputNatural();
-					cout << "\nÂâåäèòå âòîðîå ÷èñëî: "; n2 = InputNatural();
-					cout << "\nÐåçóëüòàò: "; OutNatural(LCM_NN_N(n1, n2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				default:
-					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
-					system("cls");
-					break;
-				}
-			}
-			break;
-		case 2:
-			system("cls");
-			Integer i1;
-			Integer i2;
-			module = 100;
-			while (module != -1) {
-				D_Integer();
-				cin >> module;
-				switch (module) {
-				case -1:
-					system("cls");
-					break;
-				case 1:
-					cout << "\nÀáñîëþòíàÿ âåëè÷èíà ÷èñëà\nÂâåäèòå ÷èñëî: "; i1 = Input();
-					cout << "\nÐåçóëüòàò: "; OutNatural(ABS_Z_N(i1));
-					cont();
-					system("cls");
-					break;
-				case 2:
-					cout << "\nÎïðåäåëåíèå ïîëîæèòåëüíîñòè ÷èñëà\nÂâåäèòå ÷èñëî: "; i1 = Input();
-					if (POZ_Z_D(i1) == 2) cout << "\n×èñëî ïîëîæèòåëüíîå\n";
-					if (POZ_Z_D(i1) == 0) cout << "\n×èñëî ðàâíî 0\n";
-					if (POZ_Z_D(i1) == 1) cout << "\n×èñëî îòðèöàòåëüíîå\n";
-					cont();
-					system("cls");
-					break;
-				case 3:
-					cout << "\nÓìíîæåíèå öåëîãî íà (-1)\nÂâåäèòå ÷èñëî: "; i1 = Input();
-					MUL_ZM_Z(i1);
-					cout << "\nÐåçóëüòàò: "; Output(i1); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 4:
-					Natural n;
-					cout << "\nÏðåîáðàçîâàíèå íàòóðàëüíîãî â öåëîå\nÂâåäèòå ÷èñëî: "; n = InputNatural();
-					cout << "\nÐåçóëüòàò: "; Output(TRANS_N_Z(n)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 5:
-					cout << "\nÏðåîáðàçîâàíèå öåëîãî íåîòðèöàòåëüíîãî â íàòóðàëüíîå\nÂâåäèòå ÷èñëî: "; i1 = Input();
-					cout << "\nÐåçóëüòàò: "; OutNatural(TRANS_Z_N(i1)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 6:
-					cout << "\nÑëîæåíèå öåëûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-					cout << "\nÐåçóëüòàò: "; Output(ADD_ZZ_Z(i1, i2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 7:
-					cout << "\nÂû÷èòàíèå öåëûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-					cout << "\nÐåçóëüòàò: "; Output(SUB_ZZ_Z(i1, i2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 8:
-					cout << "\nÓìíîæåíèå öåëûõ ÷èñåë\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-					cout << "\nÐåçóëüòàò: "; Output(MUL_ZZ_Z(i1, i2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 9:
-					cout << "\n×àñòíîå îò äåëåíèÿ áîëüøåãî öåëîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-					if ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0)) {
-						do {
-							cout << "\nÎøèáêà!\nÈçáåãàéòå äåëåíèÿ íà 0\nÏîïðîáóéòå åùå ðàç!";
-							cout << "\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-							cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-						} while ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0));
-					}
-					cout << "\nÐåçóëüòàò: "; Output(DIV_ZZ_Z(i1, i2)); cout << "\n";
-					/*cout << "\n×àñòíîå îò äåëåíèÿ áîëüøåãî öåëîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-					cout << "\nÐåçóëüòàò: "; Output(DIV_ZZ_Z(i1, i2)); cout << "\n";*/
-					cont();
-					system("cls");
-					break;
-				case 10:
-					cout << "\nÎñòàòîê îò äåëåíèÿ áîëüøåãî öåëîãî ÷èñëà íà ìåíüøåå èëè ðàâíîå íàòóðàëüíîå ñ îñòàòêîì(äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-					cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-					if ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0)) {
-						do {
-							cout << "\nÎøèáêà!\nÈçáåãàéòå äåëåíèÿ íà 0\nÏîïðîáóéòå åùå ðàç!";
-							cout << "\nÂâåäèòå ïåðâîå ÷èñëî: "; i1 = Input();
-							cout << "\nÂâåäèòå  âòîðîå ÷èñëî: "; i2 = Input();
-						} while ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0));
-					}
-					cout << "\nÐåçóëüòàò: "; Output(MOD_ZZ_Z(i1, i2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				default:
-					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
-					system("cls");
-					break;
-				}
-			}
-			break;
-		case 3:
-			system("cls");
-			Fraction f1;
-			Fraction f2;
-			module = 100;
-			while (module != -1) {
-				D_Fraction();
-				cin >> module;
-				switch (module) {
-				case -1:
-					system("cls");
-					break;
-				case 1:
-					cout << "\nÑîêðàùåíèå äðîáè\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; InputFraction(f1);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(RED_Q_Q(f1)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 2:
-					cout << "\nÏðîâåðêà íà öåëîå, åñëè ðàöèîíàëüíîå ÷èñëî ÿâëÿåòñÿ öåëûì, òî «äà», èíà÷å «íåò»\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; InputFraction(f1);
-					cout << "\nÐåçóëüòàò: "; INT_Q_B(f1); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 3:
-					Integer i;
-					cout << "\nÏðåîáðàçîâàíèå öåëîãî â äðîáíîå\nÂâåäèòå öåëîå ÷èñëî: "; i = Input();
-					cout << "\nÐåçóëüòàò: "; TRANS_Z_Q(i); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 4:
-					cout << "\nÏðåîáðàçîâàíèå äðîáíîãî â öåëîå (åñëè çíàìåíàòåëü ðàâåí 1)\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü äðîáè: "; InputFraction(f1);
-					cout << "\nÐåçóëüòàò: "; Output(TRANS_Q_Z(f1)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 5:
-					cout << "\nÑëîæåíèå äðîáåé\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
-					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(ADD_QQ_Q(f1, f2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 6:
-					cout << "\nÂû÷èòàíèå äðîáåé\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
-					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(SUB_QQ_Q(f1, f2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 7:
-					cout << "\nÓìíîæåíèå äðîáåé\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
-					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(MUL_QQ_Q(f1, f2)); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 8:
-					cout << "\nÄåëåíèå äðîáåé (äåëèòåëü îòëè÷åí îò íóëÿ)\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f1);
-					cout << "Âòîðîé äðîáè: "; InputFraction(f2);
-					cout << "\nÐåçóëüòàò: ";
-					Fraction temp;
-					temp = DIV_QQ_Q(f1, f2);
-					if(temp.denum.A[0]!=0)
-					OutputFraction(temp); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				default:
-					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
-					system("cls");
-					break;
-				}
-			}
-			break;
-		case 4:
-			system("cls");
-			Polynom p1;
-			Polynom p2;
-			Polynom p3;//
-			module = 100;
-			while (module != -1) {
-				D_Polynom();
-				cin >> module;
-				switch (module) {
-				case -1:
-					system("cls");
-					break;
-				case 1:
-					cout << "\nÑëîæåíèå ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
-					p3 = ADD_PP_P(p1, p2);
-					cout << "\nÐåçóëüòàò: "; outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 2:
-					cout << "\nÂû÷èòàíèå ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
-					cout << "\nÐåçóëüòàò: "; p3 = SUB_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 3:
-					Fraction f;
-					cout << "\nÓìíîæåíèå ìíîãî÷ëåíà íà ðàöèîíàëüíîå ÷èñëî\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå ÷åðåç ïðîáåë ÷èñëèòåëü è çíàìåíàòåëü ïåðâîé äðîáè: "; InputFraction(f);
-					cout << "\nÐåçóëüòàò: "; p3 = MUL_PQ_P(p1, f); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 4:
-					int k;
-					cout << "\nÓìíîæåíèå ìíîãî÷ëåíà íà x^k\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå k"; cin >> k;
-					cout << "\nÐåçóëüòàò: "; p3 = MUL_Pxk_P(p1, k); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 5:
-					cout << "\nÑòàðøèé êîýôôèöèåíò ìíîãî÷ëåíà\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÐåçóëüòàò: "; LED_P_Q(p1); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 6:
-					cout << "\nÑòåïåíü ìíîãî÷ëåíà\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÐåçóëüòàò: "; DEG_P_N(p1); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 7:
+    setlocale(LC_ALL, "Russian");
+    //SetConsoleCP(1251);
+    //SetConsoleOutputCP(1251);
+    string in="a";
+    int type = 100;
+    int module = 100;
+    int count = 0;
+    while ((type != 0)) {
+        Description();
+        in="a";
+        while (!CheckIfCorrect(in)) {
+            cin >> in;
+        }
+        istringstream iss (in, istringstream::in);
+        iss >> type;
+        switch (type) {
+            case 0:
+                break;
+            case 1:
+                system("cls");
+                Natural n1;
+                Natural n2;
+                module = 100;
+                while (module != 0) {
+                    D_Natural();
+                    in="a";
+                    while (!CheckIfCorrect(in)) {
+                        cin >> in;
+                    }
+                    istringstream iss (in, istringstream::in);
+                    iss >> module;
+                    switch (module) {
+                        case 0:
+                            system("cls");
+                            break;
+                        case 1:
+                            cout << "\nСравнение натуральных чисел\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            if (COM_NN_D(n1, n2) == 2) cout << "\nПервое больше второго\n";
+                            if (COM_NN_D(n1, n2) == 1) cout << "\nВторое больше первого\n";
+                            if (COM_NN_D(n1, n2) == 0) cout << "\nЧисла равны\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 2:
+                            cout << "\nПроверка на ноль\n";
+                            InputNatural(n1,0);
+                            if (NZER_N_B(n1) == 1) cout << "\nЧисло равно 0\n";
+                            if (NZER_N_B(n1) == 0) cout << "\nЧисло не равно 0\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 3:
+                            cout << "\nПрибавление к числу единицы\n";
+                            InputNatural(n1,0);
+                            ADD_1N_D(n1);
+                            cout << "\nРезультат: "; OutNatural(n1); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 4:
+                            cout << "\nСложение натуральных чисел\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            cout << "\nРезультат: "; OutNatural(ADD_NN_N(n1, n2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 5:
+                            cout << "\nВычитание из первого большего натурального числа второго меньшего или равного\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            cout << "\nРезультат: "; OutNatural(SUB_NN_N(n1, n2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 6:
+                            int d;
+                            cout << "\nУмножение натурального числа на цифру\n";
+                            InputNatural(n1,0);
+                            cout << "\nВведите цифру: "; cin >> d;
+                            MUL_ND_N(n1, d);
+                            cout << "\nРезультат: "; OutNatural(n1); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 7:
+                            cout << "\nУмножение натурального числа на 10^k\n";
+                            InputNatural(n1,0);
+                            cout << "\nВведите k: "; cin >> d;
+                            cout << "\nРезультат: "; OutNatural(MUL_Nk_N(n1, d)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 8:
+                            cout << "\nУмножение натуральных чисел\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            cout << "\nРезультат: "; OutNatural(MUL_NN_N(n1, n2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 9:
+                            cout << "\nВычитание из натурального другого натурального, умноженного на цифру для случая с неотрицательным результатом\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            cout << "\nВведите цифру: "; cin >> d;
+                            cout << "\nРезультат: "; OutNatural(SUB_NDN_N(n1, n2, d)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 10:
+                            cout << "\nВычисление первой цифры деления большего натурального на меньшее, домноженное на 10^k,где k - номер позиции этой цифры (номер считается с нуля)\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            if (DIV_NN_D(n1, n2) == 0) cout << "\nОшибка! Деление на ноль.\n";
+                            else {
+                                cout << "\nРезультат: ";
+                                cout << DIV_NN_D(n1, n2);
+                                cout << "\n";
+                            }
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 11:
+                            cout << "\nЧастное от деления большего натурального числа на меньшее или равное натуральное с остатком(делитель отличен от нуля)\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            if (NZER_N_B(DIV_NN_N(n1, n2)) == 1) cout << "\nОшибка! Деление на ноль.\n";
+                            else {
+                                cout << "\nРезультат: ";
+                                OutNatural(DIV_NN_N(n1, n2));
+                                cout << "\n";
+                            }
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 12:
+                            cout << "\nОстаток от деления большего натурального числа на меньшее или равное натуральное с остатком(делитель отличен от нуля)\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            if (NZER_N_B(MOD_NN_N(n1, n2)) == 1) cout << "\nОшибка! Деление на ноль.\n";
+                            else {
+                                cout << "\nРезультат: ";
+                                OutNatural(MOD_NN_N(n1, n2));
+                                cout << "\n";
+                            }
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 13:
+                            cout << "\nНОД натуральных чисел\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            if (NZER_N_B(GCF_NN_N(n1, n2)) == 1) cout << "\nОшибка! НОД двух нулей не определен.\n";
+                            else {
+                                cout << "\nРезультат: ";
+                                OutNatural(GCF_NN_N(n1, n2));
+                                cout << "\n";
+                            }
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 14:
+                            cout << "\nНОК натуральных чисел\n";
+                            InputNatural(n1,1);
+                            InputNatural(n2,2);
+                            if (NZER_N_B(LCM_NN_N(n1, n2)) == 1) cout << "\nОшибка! Деление на ноль.\n";
+                            else {
+                                cout << "\nРезультат: ";
+                                OutNatural(LCM_NN_N(n1, n2));
+                                cout << "\n";
+                            }
+                            system("pause");
+                            system("cls");
+                            break;
+                        default:
+                            cout << "\nОшибка! Неверно введеный номер\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                    }
+                }
+                break;
+            case 2:
+                system("cls");
+                Integer i1;
+                Integer i2;
+                module = 100;
+                while (module != 0) {
+                    D_Integer();
+                    in="a";
+                    while (!CheckIfCorrect(in)) {
+                        cin >> in;
+                    }
+                    istringstream iss (in, istringstream::in);
+                    iss >> module;
+                    switch (module) {
+                        case 0:
+                            system("cls");
+                            break;
+                        case 1:
+                            cout << "\nАбсолютная величина числа";
+                            Input(i1,0);
+                            cout << "\nРезультат: "; OutNatural(ABS_Z_N(i1));
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 2:
+                            cout << "\nОпределение положительности числа";
+                            Input(i1,0);
+                            if (POZ_Z_D(i1) == 2) cout << "\nЧисло положительное\n";
+                            if (POZ_Z_D(i1) == 0) cout << "\nЧисло равно 0\n";
+                            if (POZ_Z_D(i1) == 1) cout << "\nЧисло отрицательное\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 3:
+                            cout << "\nУмножение целого на (-1)";
+                            Input(i1,0);
+                            MUL_ZM_Z(i1);
+                            cout << "\nРезультат: "; Output(i1); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 4:
+                            Natural n;
+                            cout << "\nПреобразование натурального в целое\n0";
+                            InputNatural(n1,0);
+                            cout << "\nРезультат: "; Output(TRANS_N_Z(n)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 5:
+                            cout << "\nПреобразование целого неотрицательного в натуральное";
+                            Input(i1,0);
+                            cout << "\nРезультат: "; OutNatural(TRANS_Z_N(i1)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 6:
+                            cout << "\nСложение целых чисел";
+                            Input(i1,1);
+                            Input(i2,2);
+                            cout << "\nРезультат: "; Output(ADD_ZZ_Z(i1, i2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 7:
+                            cout << "\nВычитание целых чисел";
+                            Input(i1,1);
+                            Input(i2,2);
+                            cout << "\nРезультат: "; Output(SUB_ZZ_Z(i1, i2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 8:
+                            cout << "\nУмножение целых чисел";
+                            Input(i1,1);
+                            Input(i2,2);
+                            cout << "\nРезультат: "; Output(MUL_ZZ_Z(i1, i2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 9:
+                            cout << "\nЧастное от деления большего целого числа на меньшее или равное натуральное с остатком (делитель отличен от нуля)";
+                            Input(i1,1);
+                            Input(i2,2);
+                            if ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0)) {
+                                do {
+                                    cout << "\nОшибка! Избегайте деления на 0\nПопробуйте еще раз!";
+                                    Input(i1,1);
+                                    Input(i2,2);
+                                } while ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0));
+                            }
+                            cout << "\nРезультат: "; Output(DIV_ZZ_Z(i1, i2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 10:
+                            cout << "\nОстаток от деления большего целого числа на меньшее или равное натуральное с остатком (делитель отличен от нуля)";
+                            Input(i1,1);
+                            Input(i2,2);
+                            if ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0)) {
+                                do {
+                                    cout << "\nОшибка! Избегайте деления на 0\nПопробуйте еще раз!";
+                                    Input(i1,1);
+                                    Input(i2,2);
+                                } while ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0));
+                            }
+                            cout << "\nРезультат: "; Output(MOD_ZZ_Z(i1, i2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        default:
+                            cout << "\nОшибка! Неверно введеный номер\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                    }
+                }
+                break;
+            case 3:
+                system("cls");
+                Fraction f1;
+                Fraction f2;
+                module = 100;
+                while (module != 0) {
+                    D_Fraction();
+                    in="a";
+                    while (!CheckIfCorrect(in)) {
+                        cin >> in;
+                    }
+                    istringstream iss (in, istringstream::in);
+                    iss >> module;
+                    switch (module) {
+                        case 0:
+                            system("cls");
+                            break;
+                        case 1:
+                            cout << "\nСокращение дроби\n";
+                            InputFraction(f1,0);
+                            cout << "\nРезультат: "; OutputFraction(RED_Q_Q(f1)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 2:
+                            cout << "\nПроверка на целое, если рациональное число является целым, то «да», иначе «нет»\n";
+                            InputFraction(f1,0);
+                            cout << "\nРезультат: "; INT_Q_B(f1); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 3:
+                            Integer i;
+                            cout << "\nПреобразование целого в дробное";
+                            Input(i,0);
+                            cout << "\nРезультат: "; TRANS_Z_Q(i); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 4:
+                            cout << "\nПреобразование дробного в целое (если знаменатель равен 1)\n";
+                            InputFraction(f1,0);
+                            cout << "\nРезультат: "; Output(TRANS_Q_Z(f1)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 5:
+                            cout << "\nСложение дробей\n";
+                            InputFraction(f1,1);
+                            InputFraction(f2,2);
+                            cout << "\nРезультат: "; OutputFraction(ADD_QQ_Q(f1, f2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 6:
+                            cout << "\nВычитание дробей\n";
+                            InputFraction(f1,1);
+                            InputFraction(f2,2);
+                            cout << "\nРезультат: "; OutputFraction(SUB_QQ_Q(f1, f2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 7:
+                            cout << "\nУмножение дробей\n";
+                            InputFraction(f1,1);
+                            InputFraction(f2,2);
+                            cout << "\nРезультат: "; OutputFraction(MUL_QQ_Q(f1, f2)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 8:
+                            cout << "\nДеление дробей (делитель отличен от нуля)\n";
+                            InputFraction(f1,1);
+                            InputFraction(f2,2);
+                            Fraction temp;
+                            temp = DIV_QQ_Q(f1, f2);
+                            if(temp.denum.A[0]!=0) {
+                                cout << "\nРезультат: ";
+                                OutputFraction(temp);
+                                cout << "\n";
+                            }
+                            system("pause");
+                            system("cls");
+                            break;
+                        default:
+                            cout << "\nОшибка! Неверно введеный номер\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                    }
+                }
+                break;
+            case 4:
+                system("cls");
+                Polynom p1;
+                Polynom p2;
+                Polynom p3;
+                module = 100;
+                while (module != 0) {
+                    D_Polynom();
+                    in="a";
+                    while (!CheckIfCorrect(in)) {
+                        cin >> in;
+                    }
+                    istringstream iss (in, istringstream::in);
+                    iss >> module;
+                    switch (module) {
+                        case 0:
+                            system("cls");
+                            break;
+                        case 1:
+                            cout << "\nСложение многочленов\n";
+                            inputPolynom(p1,1);
+                            inputPolynom(p2,2);
+                            p3 = ADD_PP_P(p1, p2);
+                            cout << "\nРезультат: "; outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 2:
+                            cout << "\nВычитание многочленов\n";
+                            inputPolynom(p1,1);
+                            inputPolynom(p2,2);
+                            cout << "\nРезультат: "; p3 = SUB_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 3:
+                            Fraction f;
+                            cout << "\nУмножение многочлена на рациональное число\n";
+                            inputPolynom(p1,0);
+                            cout << "\n";
+                            InputFraction(f,0);
+                            cout << "\nРезультат: "; p3 = MUL_PQ_P(p1, f); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 4:
+                            int k;
+                            cout << "\nУмножение многочлена на x^k\n";
+                            inputPolynom(p1,0);
+                            cout << "\nВведите k"; cin >> k;
+                            cout << "\nРезультат: "; p3 = MUL_Pxk_P(p1, k); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 5:
+                            cout << "\nСтарший коэффициент многочлена\n";
+                            inputPolynom(p1,0);
+                            cout << "\nРезультат: "; LED_P_Q(p1); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 6:
+                            cout << "\nСтепень многочлена\n";
+                            inputPolynom(p1,0);
+                            cout << "\nРезультат: "; DEG_P_N(p1); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 7:
 
-					do
-					{
-						cout << "\nÂûíåñåíèå èç ìíîãî÷ëåíà ÍÎÊ çíàìåíàòåëåé êîýôôèöèåíòîâ è ÍÎÄ ÷èñëèòåëåé\nÂâåäèòå ïîëèíîì: ";
-						inputPolynom(p1);
-						for (long i = p1.m; i >= 0; i--)
-						{
-							if (p1.C[i].num.A != NULL) count++;
-						}
-						if (count < 2) cout << "Ââåäåí îäèí îäíî÷ëåí, íåäîñòàòî÷íî äëÿ âû÷èñëåíèÿ\nÂâåäèòå ìíîãî÷ëåí çàíîâî";
-					} while (count < 2);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(FAC_P_Q(p1, count)); cout << "\n";
-					count = 0;
-					cont();
-					system("cls");
-					break;
-					/*cout << "\nÂûíåñåíèå èç ìíîãî÷ëåíà ÍÎÊ çíàìåíàòåëåé êîýôôèöèåíòîâ è ÍÎÄ ÷èñëèòåëåé\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÐåçóëüòàò: "; OutputFraction(FAC_P_Q(p1)); cout << "\n";
-					cont();
-					system("cls");
-					break;*/
-				case 8:
-					cout << "\nÓìíîæåíèå ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
-					cout << "\nÐåçóëüòàò: "; p3 = MUL_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 9:
-					cout << "\n×àñòíîå îò äåëåíèÿ ìíîãî÷ëåíà íà ìíîãî÷ëåí ïðè äåëåíèè ñ îñòàòêîì\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
-					cout << "\nÐåçóëüòàò: "; p3 = DIV_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 10:
-					cout << "\nÎñòàòîê îò äåëåíèÿ ìíîãî÷ëåíà íà ìíîãî÷ëåí ïðè äåëåíèè ñ îñòàòêîì\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
-					cout << "\nÐåçóëüòàò: "; p3 = MOD_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 11:
-					cout << "\nÍÎÄ ìíîãî÷ëåíîâ\nÂâåäèòå ïåðâûé ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÂâåäèòå âòîðîé ïîëèíîì: "; inputPolynom(p2);
-					cout << "\nÐåçóëüòàò: "; p3 = GCF_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 12:
-					cout << "\nÏðîèçâîäíàÿ ìíîãî÷ëåíà\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÐåçóëüòàò: "; p3 = DER_P_P(p1); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				case 13:
-					cout << "\nÏðåîáðàçîâàíèå ìíîãî÷ëåíà  êðàòíûå êîðíè â ïðîñòûå\nÂâåäèòå ïîëèíîì: "; inputPolynom(p1);
-					cout << "\nÐåçóëüòàò: "; p3 = NMR_P_P(p1); outputPolynom(p3); cout << "\n";
-					cont();
-					system("cls");
-					break;
-				default:
-					cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
-					system("cls");
-					break;
-				}
-			}
-		default:
-			cout << "\nÍåâåðíî ââåäåíûé íîìåð\n";
-			system("cls");
-			break;
-		}
+                            do
+                            {
+                                cout << "\nВынесение из многочлена НОК знаменателей коэффициентов и НОД числителей\n";
+                                inputPolynom(p1,0);
+                                for (long i = p1.m; i >= 0; i--)
+                                {
+                                    if (p1.C[i].num.A != NULL) count++;
+                                }
+                                if (count < 2) cout << "Ошибка! Введен один одночлен, недостаточно для вычисления\nВведите многочлен заново";
+                            } while (count < 2);
+                            cout << "\nРезультат: "; OutputFraction(FAC_P_Q(p1, count)); cout << "\n";
+                            count = 0;
+                            system("pause");
+                            system("cls");
+                            break;
+                            /*cout << "\nВынесение из многочлена НОК знаменателей коэффициентов и НОД числителей\nВведите полином: "; inputPolynom(p1);
+                            cout << "\nРезультат: "; OutputFraction(FAC_P_Q(p1)); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;*/
+                        case 8:
+                            cout << "\nУмножение многочленов\n";
+                            inputPolynom(p1,1);
+                            inputPolynom(p2,2);
+                            cout << "\nРезультат: "; p3 = MUL_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 9:
+                            cout << "\nЧастное от деления многочлена на многочлен при делении с остатком\n";
+                            inputPolynom(p1,1);
+                            inputPolynom(p2,2);
+                            cout << "\nРезультат: "; p3 = DIV_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 10:
+                            cout << "\nОстаток от деления многочлена на многочлен при делении с остатком\n";
+                            inputPolynom(p1,1);
+                            inputPolynom(p2,2);
+                            cout << "\nРезультат: "; p3 = MOD_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 11:
+                            cout << "\nНОД многочленов\n";
+                            inputPolynom(p1,1);
+                            inputPolynom(p2,2);
+                            cout << "\nРезультат: "; p3 = GCF_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 12:
+                            cout << "\nПроизводная многочлена\n";
+                            inputPolynom(p1,0);
+                            cout << "\nРезультат: "; p3 = DER_P_P(p1); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        case 13:
+                            cout << "\nПреобразование многочлена — кратные корни в простые\n";
+                            inputPolynom(p1,0);
+                            cout << "\nРезультат: "; p3 = NMR_P_P(p1); outputPolynom(p3); cout << "\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                        default:
+                            cout << "\nОшибка! Неверно введеный номер\n";
+                            system("pause");
+                            system("cls");
+                            break;
+                    }
+                }
+            default:
+                cout << "\nОшибка! Неверно введеный номер\n";
+                system("pause");
+                system("cls");
+                break;
+        }
 
-	}
+    }
 }
