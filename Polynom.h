@@ -3,9 +3,11 @@
 #include "StructPolynom.h"
 #include "Fraction.h"
 
-void Obnulenie(Fraction&); // Обнуление неиспользуемой ячейки памяти, служит для исключения ненужных обращений
-void inputPolynom(Polynom&); //ввод многочлена
-void outputPolynom(Polynom&); //вывод многочлена
+void Ochistka(Polynom&); // РћС‡РёСЃС‚РєР° РїР°РјСЏС‚Рё, РµСЃР»Рё РјРЅРѕРіРѕС‡Р»РµРЅ Р±С‹Р» РЅРµРїСЂР°РІРёР»СЊРЅРѕ РІРІРµРґРµРЅ
+void Obnulenie(Fraction&); // РћР±РЅСѓР»РµРЅРёРµ РЅРµРёСЃРїРѕР»СЊР·СѓРµРјРѕР№ СЏС‡РµР№РєРё РїР°РјСЏС‚Рё, СЃР»СѓР¶РёС‚ РґР»СЏ РёСЃРєР»СЋС‡РµРЅРёСЏ РЅРµРЅСѓР¶РЅС‹С… РѕР±СЂР°С‰РµРЅРёР№
+void inputPolynom(Polynom&, int); // Р’РІРѕРґ РјРЅРѕРіРѕС‡Р»РµРЅР° С‡РµСЂРµР· РєРѕРЅСЃРѕР»СЊ
+void inputPolynom2(Polynom&, string); // Р’РІРѕРґ РјРЅРѕРіРѕС‡Р»РµРЅР° С‡РµСЂРµР· СЃС‚СЂРѕРєСѓ
+void outputPolynom(Polynom&); // Р’С‹РІРѕРґ РјРЅРѕРіРѕС‡Р»РµРЅР°
 Polynom ADD_PP_P(Polynom, Polynom); //P-1
 Polynom SUB_PP_P(Polynom, Polynom); //P-2
 Polynom MUL_PQ_P(Polynom, Fraction); //P-3
