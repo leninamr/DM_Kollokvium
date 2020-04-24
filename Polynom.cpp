@@ -9,6 +9,16 @@
 
 using namespace std;
 
+void Ochistka(Polynom& polynom) // Очистка памяти, если многочлен был неправильно введен
+{
+	for (long i = polynom.m; i >= 0; i--)
+	{
+		free(polynom.C[i].num.A);
+		free(polynom.C[i].denum.A);
+	}
+	free(polynom.C);
+}
+
 void Obnulenie(Fraction& fract) // Обнуление неиспользуемой ячейки памяти, служит для исключения ненужных обращений
 {
 	fract.num.A = NULL;
@@ -18,23 +28,118 @@ void Obnulenie(Fraction& fract) // Обнуление неиспользуемо
 	fract.denum.length = 0;
 }
 
-void inputPolynom(Polynom& polynom) // Функция ввода многочлена
-{ 
-	polynom.C = (Fraction*)malloc(sizeof(Fraction)*1); // Выделение минимальной памяти
-	long i = 0; char s;
+void inputPolynom(Polynom& polynom, int n) // Функция ввода многочлена через консоль
+{
+	string s1 = "";
+	if (n == 0) cout << "Введите многочлен, например: x^2+1/3x-5\n";
+	if (n == 1)	cout << "Введите первый многочлен, например: x^2+1/3x-5\n";
+	if (n == 2)	cout << "Введите второй многочлен, например: x^2+1/3x-5\n";
+	cout << "Ввод осуществляется без пробелов\n";
+	cin >> s1;
+	inputPolynom2(polynom, s1);
+}
+
+void inputPolynom2(Polynom& polynom, string s1) // Функция ввода многочлена через строку
+{
+	polynom.C = (Fraction*)malloc(sizeof(Fraction) * 1); // Выделение минимальной памяти
+	long i = 0; string s2 = "", s3 = "";
+	int k = 0; bool start = false, unwantedsymbols = false, checked = false, ifneedclear = false;
+	Fraction fract;
+	stringstream ss;
 	polynom.m = 0;
-	cout << "Остановить ввод - 0, Продолжить ввод - 1\n";
-	do
+	for (int j = 0; j <= s1.length(); j++)
 	{
-		cout << "Введите степень одночлена = ";
-		cin >> i; 
-		if (i > polynom.m) { polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (i + 1)); polynom.m = i; } // Выделение памяти для хранение коэф-тов, индекс соответствует степени икса
-		if (polynom.C == NULL) exit(1);
-		cout << "Введите числетель и знаменатель коэффициента = ";
-		InputFraction(polynom.C[i]);
-		cout << "Продолжить ввод?\n";
-		cin >> s;
-	} while (s!='0'); // Знак остановки ввода
+		unwantedsymbols = false;
+		if (!checked)
+		{
+			checked = true;
+			for (k = 0; k < s1.length(); k++)
+			{
+				if (s1[k] != '0' && s1[k] != '1' && s1[k] != '2' && s1[k] != '3' && s1[k] != '4' && s1[k] != '5' && s1[k] != '6' && s1[k] != '7' && s1[k] != '8' && s1[k] != '9' && s1[k] != '-' && s1[k] != 'x' && s1[k] != '^' && s1[k] != '/')
+				{
+					cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; unwantedsymbols = true; start = false; checked = false; break;
+				}
+			}
+		}
+		if (!unwantedsymbols)
+		{
+			while (1)
+			{
+				if (s1[0] == '+' || (s1[0] == '-' && s1.length() == 1)) { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
+				else if (s1.length() > j)
+				{
+					if ((s1[j + 1] == '-' || s1[j + 1] == '+') && (s1[j] == '-' || s1[j] == '+')) { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
+					else if ((s1[j] == '-' || s1[j] == '+') && j == s1.length() - 1) { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
+					else break;
+				}
+				if (j == s1.length()) break;
+			}
+			if (s1[j] == '-' && j == 0) { s2 = "-"; j++; }
+			if (s1[j] != '-' && s1[j] != '+' && j != s1.length())
+			{
+				s2 = s2 + s1[j];
+			}
+			else if ((s1[j] == '-' || s1[j] == '+') && s1[j - 1] == '^') { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
+			else start = true;
+			if (start)
+			{
+				s3 = "";
+				for (k = 0; k <= s2.length(); k++)
+				{
+					if (s2[k] == 'x' && k < s2.length()) { if (s3.length() == 0) s3 = "1"; fract = InputFraction2(s3); break; }
+					else if (k == s2.length()) { fract = InputFraction2(s3); break; }
+					else s3 = s3 + s2[k];
+				}
+				s3 = "";
+				if (s2[k] == 'x')
+				{
+					k++;
+					if (s2[k] == '^')
+					{
+						k++;
+						if ((s2[k] != '0' && s2[k] != '1' && s2[k] != '2' && s2[k] != '3' && s2[k] != '4' && s2[k] != '5' && s2[k] != '6' && s2[k] != '7' && s2[k] != '8' && s2[k] != '9') || k == s2.length())
+						{ cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
+						else
+						{
+							for (; k < s2.length(); k++)
+							{
+								s3 = s3 + s2[k];
+							}
+							ss << s3;
+							ss >> i;
+							s2 = "";
+							if (i > polynom.m) { polynom.m = i; polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (polynom.m + 1)); }
+							polynom.C[i] = fract;
+							ifneedclear = true;
+							start = false;
+						}
+					}
+					else
+					{
+						if (k < s2.length()) { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
+						else
+						{
+							i = 1;
+							s2 = "";
+							if (i > polynom.m) { polynom.m = i; polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (polynom.m + 1)); }
+							polynom.C[i] = fract;
+							ifneedclear = true;
+							start = false;
+						}
+					}
+				}
+				else
+				{
+					i = 0;
+					s2 = "";
+					polynom.C[i] = fract;
+					start = false;
+					ifneedclear = true;
+				}
+			Obnulenie(fract);
+			}
+		}
+	}
 	for (i = polynom.m; i >= 0; i--)
 	{
 		if (polynom.C[i].denum.length <= 0) Obnulenie(polynom.C[i]); // Проверка на длину числа в знаменателе и обнуление неиспользующихся ячеек 
@@ -51,7 +156,9 @@ void outputPolynom(Polynom& polynom) // Функция ввывода много
 		{
 			if (i != polynom.m && polynom.C[i].num.b == 0 && !firstpos) cout << '+'; // Если коэф-т выводится не первым и он положителен то выводится +
 			OutputFraction(polynom.C[i]);
-			cout << "x^" << i;
+			if (i == 1) cout << "x";
+			else if (i == 0) cout << "";
+			else cout << "x^" << i;
 			firstpos = false; // Сброс первенства вывода
 			nol = false; // Сброс нулевого вывода
 			free(polynom.C[i].num.A);
