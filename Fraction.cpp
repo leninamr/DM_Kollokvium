@@ -175,6 +175,11 @@ Fraction MUL_QQ_Q(struct Fraction q1, struct Fraction q2) {
 }
 //Q-8
 Fraction DIV_QQ_Q(struct Fraction q1, struct Fraction q2) {
+	if (q2.num.A[0] == 0) {
+		cout << "На ноль делать нельзя!";
+		q1.denum.A[0] = 0;
+		return q1;
+	}
 	Fraction temp;
 	Integer Z1, Z2, Z3;
 	Z1 = TRANS_N_Z(q1.denum);
