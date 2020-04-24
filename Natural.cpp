@@ -198,17 +198,14 @@ Natural SUB_NDN_N(Natural N, Natural N2, int D)
 	return temp;
 }
 
-Natural DIV_NN_Dk(Natural N, Natural N2)
+int DIV_NN_D(Natural N, Natural N2)
 {
-	if (NZER_N_B(N) == 1) return N;
-	if (NZER_N_B(N2) == 1) return N2;
+	if (NZER_N_B(N) == 1) return 0;
+	if (NZER_N_B(N2) == 1) return 0;
 	Natural temp; int i, k, g = 0;
-	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A;} //выбираем большее
+	if (COM_NN_D(N, N2) == 1) { Copy(temp, N); Copy(N, N2); Copy(N2, temp); delete[]temp.A; } //выбираем большее
 
-	if (COM_NN_D(N, N2) == 0) {
-		temp.length = 1; temp.A = (int*)malloc(sizeof(int) * temp.length);
-		temp.A[0] = 1;
-	} //если числа равны, получаем единицу
+	if (COM_NN_D(N, N2) == 0) { i = 1; } //если числа равны, получаем единицу
 	else
 	{
 		k = N.length - N2.length;
@@ -239,9 +236,28 @@ Natural DIV_NN_Dk(Natural N, Natural N2)
 			g = 0;
 		}
 		temp.length = 1; if (g == 0) i--; //тут и уменьшаем
-		temp.A[0] = i;		//записываемы
-		temp = MUL_Nk_N(temp, (N.length - k)); //добавляем нули
+		delete[]temp.A;
 	}
+	return i;
+}
+
+Natural DIV_NN_Dk(Natural N, Natural N2)
+{
+	if (NZER_N_B(N) == 1) return N;
+	if (NZER_N_B(N2) == 1) return N2;
+	Natural temp; int k, g;
+	temp.A = (int*)malloc(sizeof(int)); temp.length = 1;
+	k = N.length - N2.length;
+	for (int i = N2.length - 1; i >= 0; i--)	//смотрим на первые цифры (кол-во равно длине второго числа)
+	{
+		if (N.A[i + k] > N2.A[i]) { g = 1; break; }
+		else if (N.A[i + k] < N2.A[i]) { g = 2; break; }
+		else g = 0;						//узнаем больше это число, меньше или равно второму числу
+	}								//если больше или равно, берем его, если меньше, берем на одну цифру больше (иначе получим 0)
+	if (g == 1 || g == 0) k = N2.length;
+	else k = N2.length + 1;
+	temp.A[0] = DIV_NN_D(N, N2);		//записываемы
+	temp = MUL_Nk_N(temp, (N.length - k)); //добавляем нули
 	return temp;
 }
 

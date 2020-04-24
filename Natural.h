@@ -18,6 +18,7 @@ void MUL_ND_N(Natural& N, int D);
 Natural MUL_Nk_N(Natural N, int k);
 Natural MUL_NN_N(Natural N, Natural N2);
 Natural SUB_NDN_N(Natural N, Natural N2, int D);
+int DIV_NN_D(Natural N, Natural N2);
 Natural DIV_NN_Dk(Natural N, Natural N2);
 Natural DIV_NN_N(Natural N, Natural N2);
 Natural MOD_NN_N(Natural N, Natural N2);
