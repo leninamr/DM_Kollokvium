@@ -46,7 +46,6 @@ Fraction InputFraction2(string s) {
 	if (s.length() == s2.length()) InputNaturalFor(q.denum, "1");
 	else {
 		string s3;
-		t = 0;
 		s3 = "";
 		for (int j = i + 1; j < s.length(); j++) 
 		{
