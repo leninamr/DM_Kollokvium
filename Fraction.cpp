@@ -14,51 +14,62 @@ void InputFraction(struct Fraction& q, int n) {
 	q = InputFraction2(s);
 }
 Fraction InputFraction2(string s) {
-	Fraction q;
-	setlocale(LC_ALL, "rus");
-	string s2;
-	int i;
-	int t = 1;
-	while (1) {
-		i = 0;
-		s2 = "";
-		while (s[0] == '/')
-		{
-			cout << "\nОшибка! Введите корректно дробь:\n";
-			cin >> s;
-		}
-		while (s[i] != '/' && s2.length() < s.length())
-		{
-			s2 = s2 + s[i];
-			if (s2.length() == s.length() - 1 && s[i + 1] == '/') {
-				cout << "\nОшибка! Введите корректно дробь:\n";
-				cin >> s;
-				t = 1;
-				break;
-			}
-			else
-				t = 0;
-			i++;
-		}
-		if (t == 0) break;
-	}
-	q.num = Input2(s2);					  //заполняем числитель
-	if (s.length() == s2.length()) InputNaturalFor(q.denum, "1");
-	else {
-		string s3;
-		s3 = "";
-		for (int j = i + 1; j < s.length(); j++) 
-		{
-			s3 = s3 + s[j];
-		}
-		while ((s3[0] == '0' && s3.length() == 1) || CheckIfCorrect(s3) == false)
-		{
-			cout << "Ошибка!\nВведите корректное натуральное число:";
-			cin >> s3;
-		}
-		InputNaturalFor(q.denum, s3);
-	}
-	return q;
+    Fraction q;
+    setlocale(LC_ALL, "rus");
+    string s2;
+    int i;
+    int t = 1;
+    while (1) {
+        i = 0;
+        s2 = "";
+        while (s[0] == '/')
+        {
+            cout << "Ошибка! Введите корректно дробь:\n";
+            cin >> s;
+        }
+        while (s[i] != '/' && s2.length() < s.length())
+        {
+            s2 = s2 + s[i];
+            if (s2.length() == s.length() - 1 && s[i + 1] == '/') {
+                cout << "Ошибка! Введите корректно дробь:\n";
+                cin >> s;
+                t = 1;
+                break;
+            }
+            else t = 0;
+            i++;
+        }
+        int j = i;
+        while (j < s.length())
+        {
+            if (s[j] == '/' && s[j + 1] == '/') {
+                cout << "Ошибка! Введите корректно дробь:\n";
+                cin >> s;
+                t = 1;
+                break;
+            }
+            else t = 0;
+            j++;
+        }
+        if (t == 0) break;
+    }
+    q.num = Input2(s2);					  //заполняем числитель
+    if (s.length() == s2.length()) InputNaturalFor(q.denum, "1");
+    else {
+        string s3;
+        s3 = "";
+        for (int j = i + 1; j < s.length(); j++)
+        {
+            s3 = s3 + s[j];
+        }
+        while ((s3[0] == '0' && s3.length() == 1) || CheckIfCorrect(s3) == false)
+        {
+            cout << "Ошибка! Введите корректное натуральное число: \n";
+            cin >> s3;
+        }
+        InputNaturalFor(q.denum, s3);
+    }
+    return q;
 }
 //Вывод дроби
 void OutputFraction(struct Fraction q) {
