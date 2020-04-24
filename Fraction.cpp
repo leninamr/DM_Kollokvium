@@ -48,13 +48,14 @@ Fraction InputFraction2(string s) {
 		string s3;
 		t = 0;
 		s3 = "";
-		for (int j = i + 1; j < s.length(); j++) {
+		for (int j = i + 1; j < s.length(); j++) 
+		{
 			s3 = s3 + s[j];
 		}
-		while (CheckIfCorrect(s3) == false)
+		while ((s3[0] == '0' && s3.length() == 1) || CheckIfCorrect(s3) == false)
 		{
 			cout << "Ошибка!\nВведите корректное натуральное число:";
-			cin >> s;
+			cin >> s3;
 		}
 		InputNaturalFor(q.denum, s3);
 	}
