@@ -22,7 +22,7 @@ Fraction InputFraction2(string s) {
 	while (1) {
 		i = 0;
 		s2 = "";
-		while (s[0] = '/')
+		while (s[0] == '/')
 		{
 			cout << "\nОшибка! Введите корректно дробь:\n";
 			cin >> s;
