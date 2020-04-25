@@ -137,7 +137,7 @@ Fraction RED_Q_Q(struct Fraction q) {
 		Integer Z, D, denum_z;
 		Z = TRANS_N_Z(q.denum);
 		D = TRANS_N_Z(del);
-		if (q.num.A[0] == 0) temp.num = q.num;
+		if (q.num.A[0] == 0 && q.num.n == 0) temp.num = q.num;
 		else
 		{
 			if (q.num.b == 1) { q.num.b = 0; iffalse = true; }

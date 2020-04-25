@@ -165,11 +165,9 @@ void inputPolynom2(Polynom& polynom, string s1) // Функция ввода многочлена чере
 								else
 								{
 									if (i > polynom.m) { polynom.m = i; polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (polynom.m + 1)); }
-									if (polynom.C[i].num.b != NULL)
-										if (polynom.C[i].num.b != 0 || polynom.C[i].num.b != 1) // Если ячейка заполнена, тогда неправильно введен многочлен(в строке есть одинаковые степени)
-										{ if (fract.num.A[0] != 0) polynom.C[i] = fract; ifneedclear = true; start = false; }
-										else { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
-									else { if (fract.num.A[0] != 0) polynom.C[i] = fract; ifneedclear = true;	start = false; }
+									if (polynom.C[i].num.A == NULL) { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }
+									else if (polynom.C[i].num.b != 0 && polynom.C[i].num.b != 1) { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }// Если ячейка заполнена, тогда неправильно введен многочлен(в строке есть одинаковые степени)
+									else { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
 								}
 							}
 						}
@@ -181,22 +179,18 @@ void inputPolynom2(Polynom& polynom, string s1) // Функция ввода многочлена чере
 						{
 							i = 1;
 							if (i > polynom.m) { polynom.m = i; polynom.C = (Fraction*)realloc(polynom.C, sizeof(Fraction) * (polynom.m + 1)); }
-							if (polynom.C[i].num.b != NULL)
-								if (polynom.C[i].num.b != 0 || polynom.C[i].num.b != 1) // Если ячейка заполнена, тогда неправильно введен многочлен(в строке есть одинаковые степени)
-								{ if (fract.num.A[0] != 0) polynom.C[i] = fract; ifneedclear = true; start = false; }
-								else { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
-							else { if (fract.num.A[0] != 0) polynom.C[i] = fract; ifneedclear = true; start = false; }
+							if (polynom.C[i].num.A == NULL) { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }
+							else if (polynom.C[i].num.b != 0 && polynom.C[i].num.b != 1) { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }// Если ячейка заполнена, тогда неправильно введен многочлен(в строке есть одинаковые степени)
+							else { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
 						}
 					}
 				}
 				else // Если не встречен икс, тогда запись в ячейку свободного члена
 				{
 					i = 0;
-					if (polynom.C[i].num.b != NULL)
-						if (polynom.C[i].num.b != 0 || polynom.C[i].num.b != 1) // Если ячейка заполнена, тогда неправильно введен многочлен(в строке есть одинаковые степени)
-						{ if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }
-						else { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
-					else { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }
+					if (polynom.C[i].num.A == NULL) { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }
+					else if (polynom.C[i].num.b != 0 && polynom.C[i].num.b != 1) { if (fract.num.A[0] != 0) polynom.C[i] = fract; start = false; ifneedclear = true; }// Если ячейка заполнена, тогда неправильно введен многочлен(в строке есть одинаковые степени)
+					else { cout << "Многочлен введен неправильно, попробуйте еще раз\n"; cin >> s1; j = -1; s2 = ""; polynom.m = 0; if (ifneedclear) Ochistka(polynom); checked = false; start = false; }
 				}
 				s2 = ""; // Очистка промежуточных переменных
 				s3 = "";
@@ -466,7 +460,7 @@ Polynom MUL_PP_P(Polynom polynom, Polynom polynom2) //P-8 Умножение многочленов
 	{
 		if (polynom3.C[i].num.A != NULL)
 			if (polynom3.C[i].num.A[0] == 0 && polynom3.C[i].num.n == 0) Obnulenie(polynom3.C[i]);
-			else polynom3.C[i] = RED_Q_Q(polynom3.C[i]);
+			else { polynom3.C[i] = RED_Q_Q(polynom3.C[i]); }
 	}
 	return(polynom3);
 }
@@ -501,9 +495,14 @@ Polynom DIV_PP_P(Polynom polynom, Polynom polynom2) //P-9 Частное от деления мно
 
 Polynom MOD_PP_P(Polynom polynom, Polynom polynom2) //P-10 Остаток от деления многочлена на многочлен при делении с остатком
 {
+	char s;
 	Polynom Chast = DIV_PP_P(polynom, polynom2); // Третья переменная, хранящая частное от деления многочленов
 	Polynom Proizved = MUL_PP_P(polynom2, Chast); // Четвертая переменная, хранящая произведение частного и делителя
+	//cin >> s;
+	//if (s == '0') outputPolynom(Proizved);
 	Polynom Ost = SUB_PP_P(polynom, Proizved); // Пятая переменная, хранящая разность делимого и произведения делителя на частное - остаток
+	//cin >> s;
+	//if (s == '0') outputPolynom(Ost);
 	for (long i = Ost.m; i >= 0; i--)
 	{
 		if (Ost.C[i].num.A != NULL)
@@ -538,6 +537,8 @@ Polynom GCF_PP_P(Polynom polynom, Polynom polynom2) //P-11 НОД многочленов
 			polynom2.C[i] = RED_Q_Q(polynom2.C[i]);
 		}
 	}
+	Ochistka(Ost);
+	Ochistka(polynomb);
 	return(polynom2);
 }
 
