@@ -1,6 +1,5 @@
 #pragma once
 
-void cont();
 void Description();
 void D_Natural();
 void D_Integer();
