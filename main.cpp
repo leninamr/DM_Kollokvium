@@ -55,90 +55,90 @@ int main() {
 					system("cls");
 					break;
 				case 1:
-					cout << "\nСравнение натуральных чисел\n";
+					cout << "\nРЎСЂР°РІРЅРµРЅРёРµ РЅР°С‚СѓСЂР°Р»СЊРЅС‹С… С‡РёСЃРµР»\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					if (COM_NN_D(n1, n2) == 2) cout << "\nПервое больше второго\n";
-					if (COM_NN_D(n1, n2) == 1) cout << "\nВторое больше первого\n";
-					if (COM_NN_D(n1, n2) == 0) cout << "\nЧисла равны\n";
+					if (COM_NN_D(n1, n2) == 2) cout << "\nРџРµСЂРІРѕРµ Р±РѕР»СЊС€Рµ РІС‚РѕСЂРѕРіРѕ\n";
+					if (COM_NN_D(n1, n2) == 1) cout << "\nР’С‚РѕСЂРѕРµ Р±РѕР»СЊС€Рµ РїРµСЂРІРѕРіРѕ\n";
+					if (COM_NN_D(n1, n2) == 0) cout << "\nР§РёСЃР»Р° СЂР°РІРЅС‹\n";
 					system("pause");
 					system("cls");
 					break;
 				case 2:
-					cout << "\nПроверка на ноль\n";
+					cout << "\nРџСЂРѕРІРµСЂРєР° РЅР° РЅРѕР»СЊ\n";
 					InputNatural(n1, 0);
-					if (NZER_N_B(n1) == 1) cout << "\nЧисло равно 0\n";
-					if (NZER_N_B(n1) == 0) cout << "\nЧисло не равно 0\n";
+					if (NZER_N_B(n1) == 1) cout << "\nР§РёСЃР»Рѕ СЂР°РІРЅРѕ 0\n";
+					if (NZER_N_B(n1) == 0) cout << "\nР§РёСЃР»Рѕ РЅРµ СЂР°РІРЅРѕ 0\n";
 					system("pause");
 					system("cls");
 					break;
 				case 3:
-					cout << "\nПрибавление к числу единицы\n";
+					cout << "\nРџСЂРёР±Р°РІР»РµРЅРёРµ Рє С‡РёСЃР»Сѓ РµРґРёРЅРёС†С‹\n";
 					InputNatural(n1, 0);
 					ADD_1N_D(n1);
-					cout << "\nРезультат: "; OutNatural(n1); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(n1); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 4:
-					cout << "\nСложение натуральных чисел\n";
+					cout << "\nРЎР»РѕР¶РµРЅРёРµ РЅР°С‚СѓСЂР°Р»СЊРЅС‹С… С‡РёСЃРµР»\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					cout << "\nРезультат: "; OutNatural(ADD_NN_N(n1, n2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(ADD_NN_N(n1, n2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 5:
-					cout << "\nВычитание из первого большего натурального числа второго меньшего или равного\n";
+					cout << "\nР’С‹С‡РёС‚Р°РЅРёРµ РёР· РїРµСЂРІРѕРіРѕ Р±РѕР»СЊС€РµРіРѕ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ С‡РёСЃР»Р° РІС‚РѕСЂРѕРіРѕ РјРµРЅСЊС€РµРіРѕ РёР»Рё СЂР°РІРЅРѕРіРѕ\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					cout << "\nРезультат: "; OutNatural(SUB_NN_N(n1, n2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(SUB_NN_N(n1, n2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 6:
 					int d;
-					cout << "\nУмножение натурального числа на цифру\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ С‡РёСЃР»Р° РЅР° С†РёС„СЂСѓ\n";
 					InputNatural(n1, 0);
-					cout << "\nВведите цифру: "; cin >> d;
+					cout << "\nР’РІРµРґРёС‚Рµ С†РёС„СЂСѓ: "; cin >> d;
 					MUL_ND_N(n1, d);
-					cout << "\nРезультат: "; OutNatural(n1); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(n1); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 7:
-					cout << "\nУмножение натурального числа на 10^k\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ С‡РёСЃР»Р° РЅР° 10^k\n";
 					InputNatural(n1, 0);
-					cout << "\nВведите k: "; cin >> d;
-					cout << "\nРезультат: "; OutNatural(MUL_Nk_N(n1, d)); cout << "\n";
+					cout << "\nР’РІРµРґРёС‚Рµ k: "; cin >> d;
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(MUL_Nk_N(n1, d)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 8:
-					cout << "\nУмножение натуральных чисел\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РЅР°С‚СѓСЂР°Р»СЊРЅС‹С… С‡РёСЃРµР»\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					cout << "\nРезультат: "; OutNatural(MUL_NN_N(n1, n2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(MUL_NN_N(n1, n2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 9:
-					cout << "\nВычитание из натурального другого натурального, умноженного на цифру для случая с неотрицательным результатом\n";
+					cout << "\nР’С‹С‡РёС‚Р°РЅРёРµ РёР· РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ РґСЂСѓРіРѕРіРѕ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ, СѓРјРЅРѕР¶РµРЅРЅРѕРіРѕ РЅР° С†РёС„СЂСѓ РґР»СЏ СЃР»СѓС‡Р°СЏ СЃ РЅРµРѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј СЂРµР·СѓР»СЊС‚Р°С‚РѕРј\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					cout << "\nВведите цифру: "; cin >> d;
-					while (d < 0 || d > 9) { cout << "\nВведите цифру: "; cin >> d; }
-					cout << "\nРезультат: "; OutNatural(SUB_NDN_N(n1, n2, d)); cout << "\n";
+					cout << "\nР’РІРµРґРёС‚Рµ С†РёС„СЂСѓ: "; cin >> d;
+					while (d < 0 || d > 9) { cout << "\nР’РІРµРґРёС‚Рµ С†РёС„СЂСѓ: "; cin >> d; }
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(SUB_NDN_N(n1, n2, d)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 10:
-					cout << "\nВычисление первой цифры деления большего натурального на меньшее, домноженное на 10^k,где k - номер позиции этой цифры (номер считается с нуля)\n";
+					cout << "\nР’С‹С‡РёСЃР»РµРЅРёРµ РїРµСЂРІРѕР№ С†РёС„СЂС‹ РґРµР»РµРЅРёСЏ Р±РѕР»СЊС€РµРіРѕ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ РЅР° РјРµРЅСЊС€РµРµ, РґРѕРјРЅРѕР¶РµРЅРЅРѕРµ РЅР° 10^k,РіРґРµ k - РЅРѕРјРµСЂ РїРѕР·РёС†РёРё СЌС‚РѕР№ С†РёС„СЂС‹ (РЅРѕРјРµСЂ СЃС‡РёС‚Р°РµС‚СЃСЏ СЃ РЅСѓР»СЏ)\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					if (DIV_NN_D(n1, n2) == 0) cout << "\nОшибка! Деление на ноль.\n";
+					if (DIV_NN_D(n1, n2) == 0) cout << "\nРћС€РёР±РєР°! Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ.\n";
 					else {
-						cout << "\nРезультат: ";
+						cout << "\nР РµР·СѓР»СЊС‚Р°С‚: ";
 						cout << DIV_NN_D(n1, n2);
 						cout << "\n";
 					}
@@ -146,12 +146,12 @@ int main() {
 					system("cls");
 					break;
 				case 11:
-					cout << "\nЧастное от деления большего натурального числа на меньшее или равное натуральное с остатком(делитель отличен от нуля)\n";
+					cout << "\nР§Р°СЃС‚РЅРѕРµ РѕС‚ РґРµР»РµРЅРёСЏ Р±РѕР»СЊС€РµРіРѕ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ С‡РёСЃР»Р° РЅР° РјРµРЅСЊС€РµРµ РёР»Рё СЂР°РІРЅРѕРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРµ СЃ РѕСЃС‚Р°С‚РєРѕРј(РґРµР»РёС‚РµР»СЊ РѕС‚Р»РёС‡РµРЅ РѕС‚ РЅСѓР»СЏ)\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					if (NZER_N_B(DIV_NN_N(n1, n2)) == 1) cout << "\nОшибка! Деление на ноль.\n";
+					if (NZER_N_B(DIV_NN_N(n1, n2)) == 1) cout << "\nРћС€РёР±РєР°! Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ.\n";
 					else {
-						cout << "\nРезультат: ";
+						cout << "\nР РµР·СѓР»СЊС‚Р°С‚: ";
 						OutNatural(DIV_NN_N(n1, n2));
 						cout << "\n";
 					}
@@ -159,12 +159,12 @@ int main() {
 					system("cls");
 					break;
 				case 12:
-					cout << "\nОстаток от деления большего натурального числа на меньшее или равное натуральное с остатком(делитель отличен от нуля)\n";
+					cout << "\nРћСЃС‚Р°С‚РѕРє РѕС‚ РґРµР»РµРЅРёСЏ Р±РѕР»СЊС€РµРіРѕ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРіРѕ С‡РёСЃР»Р° РЅР° РјРµРЅСЊС€РµРµ РёР»Рё СЂР°РІРЅРѕРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРµ СЃ РѕСЃС‚Р°С‚РєРѕРј(РґРµР»РёС‚РµР»СЊ РѕС‚Р»РёС‡РµРЅ РѕС‚ РЅСѓР»СЏ)\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					if (NZER_N_B(n1) == 1 || NZER_N_B(n2) == 1) cout << "Ошибка! Деление на ноль";
+					if (NZER_N_B(n1) == 1 || NZER_N_B(n2) == 1) cout << "РћС€РёР±РєР°! Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ";
 					else {
-						cout << "\nРезультат: ";
+						cout << "\nР РµР·СѓР»СЊС‚Р°С‚: ";
 						OutNatural(MOD_NN_N(n1, n2));
 						cout << "\n";
 					}
@@ -172,12 +172,12 @@ int main() {
 					system("cls");
 					break;
 				case 13:
-					cout << "\nНОД натуральных чисел\n";
+					cout << "\nРќРћР” РЅР°С‚СѓСЂР°Р»СЊРЅС‹С… С‡РёСЃРµР»\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					if (NZER_N_B(GCF_NN_N(n1, n2)) == 1) cout << "\nОшибка! НОД двух нулей не определен.\n";
+					if (NZER_N_B(GCF_NN_N(n1, n2)) == 1) cout << "\nРћС€РёР±РєР°! РќРћР” РґРІСѓС… РЅСѓР»РµР№ РЅРµ РѕРїСЂРµРґРµР»РµРЅ.\n";
 					else {
-						cout << "\nРезультат: ";
+						cout << "\nР РµР·СѓР»СЊС‚Р°С‚: ";
 						OutNatural(GCF_NN_N(n1, n2));
 						cout << "\n";
 					}
@@ -185,12 +185,12 @@ int main() {
 					system("cls");
 					break;
 				case 14:
-					cout << "\nНОК натуральных чисел\n";
+					cout << "\nРќРћРљ РЅР°С‚СѓСЂР°Р»СЊРЅС‹С… С‡РёСЃРµР»\n";
 					InputNatural(n1, 1);
 					InputNatural(n2, 2);
-					if (NZER_N_B(LCM_NN_N(n1, n2)) == 1) cout << "\nОшибка! Деление на ноль.\n";
+					if (NZER_N_B(LCM_NN_N(n1, n2)) == 1) cout << "\nРћС€РёР±РєР°! Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ.\n";
 					else {
-						cout << "\nРезультат: ";
+						cout << "\nР РµР·СѓР»СЊС‚Р°С‚: ";
 						OutNatural(LCM_NN_N(n1, n2));
 						cout << "\n";
 					}
@@ -198,7 +198,7 @@ int main() {
 					system("cls");
 					break;
 				default:
-					cout << "\nОшибка! Неверно введеный номер\n";
+					cout << "\nРћС€РёР±РєР°! РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅС‹Р№ РЅРѕРјРµСЂ\n";
 					system("pause");
 					system("cls");
 					break;
@@ -224,75 +224,75 @@ int main() {
 					system("cls");
 					break;
 				case 1:
-					cout << "\nАбсолютная величина числа";
+					cout << "\nРђР±СЃРѕР»СЋС‚РЅР°СЏ РІРµР»РёС‡РёРЅР° С‡РёСЃР»Р°";
 					Input(i1, 0);
-					cout << "\nРезультат: "; OutNatural(ABS_Z_N(i1)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutNatural(ABS_Z_N(i1)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 2:
-					cout << "\nОпределение положительности числа";
+					cout << "\nРћРїСЂРµРґРµР»РµРЅРёРµ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕСЃС‚Рё С‡РёСЃР»Р°";
 					Input(i1, 0);
-					if (POZ_Z_D(i1) == 2) cout << "\nЧисло положительное\n";
-					if (POZ_Z_D(i1) == 0) cout << "\nЧисло равно 0\n";
-					if (POZ_Z_D(i1) == 1) cout << "\nЧисло отрицательное\n";
+					if (POZ_Z_D(i1) == 2) cout << "\nР§РёСЃР»Рѕ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕРµ\n";
+					if (POZ_Z_D(i1) == 0) cout << "\nР§РёСЃР»Рѕ СЂР°РІРЅРѕ 0\n";
+					if (POZ_Z_D(i1) == 1) cout << "\nР§РёСЃР»Рѕ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ\n";
 					system("pause");
 					system("cls");
 					break;
 				case 3:
-					cout << "\nУмножение целого на (-1)";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ С†РµР»РѕРіРѕ РЅР° (-1)";
 					Input(i1, 0);
 					MUL_ZM_Z(i1);
-					cout << "\nРезультат: "; Output(i1); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; Output(i1); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 4:
-					cout << "\nСложение целых чисел";
+					cout << "\nРЎР»РѕР¶РµРЅРёРµ С†РµР»С‹С… С‡РёСЃРµР»";
 					Input(i1, 1);
 					Input(i2, 2);
-					cout << "\nРезультат: "; Output(ADD_ZZ_Z(i1, i2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; Output(ADD_ZZ_Z(i1, i2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 5:
-					cout << "\nВычитание целых чисел";
+					cout << "\nР’С‹С‡РёС‚Р°РЅРёРµ С†РµР»С‹С… С‡РёСЃРµР»";
 					Input(i1, 1);
 					Input(i2, 2);
-					cout << "\nРезультат: "; Output(SUB_ZZ_Z(i1, i2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; Output(SUB_ZZ_Z(i1, i2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 6:
-					cout << "\nУмножение целых чисел";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ С†РµР»С‹С… С‡РёСЃРµР»";
 					Input(i1, 1);
 					Input(i2, 2);
-					cout << "\nРезультат: "; Output(MUL_ZZ_Z(i1, i2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; Output(MUL_ZZ_Z(i1, i2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 7:
-					cout << "\nЧастное от деления большего целого числа на меньшее или равное натуральное с остатком(делитель отличен от нуля)";
+					cout << "\nР§Р°СЃС‚РЅРѕРµ РѕС‚ РґРµР»РµРЅРёСЏ Р±РѕР»СЊС€РµРіРѕ С†РµР»РѕРіРѕ С‡РёСЃР»Р° РЅР° РјРµРЅСЊС€РµРµ РёР»Рё СЂР°РІРЅРѕРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРµ СЃ РѕСЃС‚Р°С‚РєРѕРј(РґРµР»РёС‚РµР»СЊ РѕС‚Р»РёС‡РµРЅ РѕС‚ РЅСѓР»СЏ)";
 					Input(i1, 1);
 					Input(i2, 2);
 					if ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0))
-						cout << "\nОшибка! Избегайте деления на 0.\n";
-					else { cout << "\nРезультат: "; Output(DIV_ZZ_Z(i1, i2)); cout << "\n"; }
+						cout << "\nРћС€РёР±РєР°! РР·Р±РµРіР°Р№С‚Рµ РґРµР»РµРЅРёСЏ РЅР° 0.\n";
+					else { cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; Output(DIV_ZZ_Z(i1, i2)); cout << "\n"; }
 					system("pause");
 					system("cls");
 					break;
 				case 8:
-					cout << "\nОстаток от деления большего целого числа на меньшее или равное натуральное с остатком (делитель отличен от нуля)";
+					cout << "\nРћСЃС‚Р°С‚РѕРє РѕС‚ РґРµР»РµРЅРёСЏ Р±РѕР»СЊС€РµРіРѕ С†РµР»РѕРіРѕ С‡РёСЃР»Р° РЅР° РјРµРЅСЊС€РµРµ РёР»Рё СЂР°РІРЅРѕРµ РЅР°С‚СѓСЂР°Р»СЊРЅРѕРµ СЃ РѕСЃС‚Р°С‚РєРѕРј (РґРµР»РёС‚РµР»СЊ РѕС‚Р»РёС‡РµРЅ РѕС‚ РЅСѓР»СЏ)";
 					Input(i1, 1);
 					Input(i2, 2);
 					if ((POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 0) || (POZ_Z_D(i1) == 0 && POZ_Z_D(i2) == 2) || (POZ_Z_D(i1) == 2 && POZ_Z_D(i2) == 0))
-						cout << "\nОшибка! Избегайте деления на 0.\n";
-					else { cout << "\nРезультат: "; Output(MOD_ZZ_Z(i1, i2)); cout << "\n"; }
+						cout << "\nРћС€РёР±РєР°! РР·Р±РµРіР°Р№С‚Рµ РґРµР»РµРЅРёСЏ РЅР° 0.\n";
+					else { cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; Output(MOD_ZZ_Z(i1, i2)); cout << "\n"; }
 					system("pause");
 					system("cls");
 					break;
 				default:
-					cout << "\nОшибка! Неверно введеный номер\n";
+					cout << "\nРћС€РёР±РєР°! РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅС‹Р№ РЅРѕРјРµСЂ\n";
 					system("pause");
 					system("cls");
 					break;
@@ -318,51 +318,51 @@ int main() {
 					system("cls");
 					break;
 				case 1:
-					cout << "\nСокращение дроби\n";
+					cout << "\nРЎРѕРєСЂР°С‰РµРЅРёРµ РґСЂРѕР±Рё\n";
 					InputFraction(f1, 0);
-					cout << "\nРезультат: "; OutputFraction(RED_Q_Q(f1)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutputFraction(RED_Q_Q(f1)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 2:
-					cout << "\nПроверка на целое, если рациональное число является целым, то «да», иначе «нет»\n";
+					cout << "\nРџСЂРѕРІРµСЂРєР° РЅР° С†РµР»РѕРµ, РµСЃР»Рё СЂР°С†РёРѕРЅР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ СЏРІР»СЏРµС‚СЃСЏ С†РµР»С‹Рј, С‚Рѕ В«РґР°В», РёРЅР°С‡Рµ В«РЅРµС‚В»\n";
 					InputFraction(f1, 0);
-					cout << "\nРезультат: "; INT_Q_B(f1); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; INT_Q_B(f1); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 3:
-					cout << "\nСложение дробей\n";
+					cout << "\nРЎР»РѕР¶РµРЅРёРµ РґСЂРѕР±РµР№\n";
 					InputFraction(f1, 1);
 					InputFraction(f2, 2);
-					cout << "\nРезультат: "; OutputFraction(ADD_QQ_Q(f1, f2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutputFraction(ADD_QQ_Q(f1, f2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 4:
-					cout << "\nВычитание дробей\n";
+					cout << "\nР’С‹С‡РёС‚Р°РЅРёРµ РґСЂРѕР±РµР№\n";
 					InputFraction(f1, 1);
 					InputFraction(f2, 2);
-					cout << "\nРезультат: "; OutputFraction(SUB_QQ_Q(f1, f2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutputFraction(SUB_QQ_Q(f1, f2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 5:
-					cout << "\nУмножение дробей\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РґСЂРѕР±РµР№\n";
 					InputFraction(f1, 1);
 					InputFraction(f2, 2);
-					cout << "\nРезультат: "; OutputFraction(MUL_QQ_Q(f1, f2)); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutputFraction(MUL_QQ_Q(f1, f2)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 6:
-					cout << "\nДеление дробей (делитель отличен от нуля)\n";
+					cout << "\nР”РµР»РµРЅРёРµ РґСЂРѕР±РµР№ (РґРµР»РёС‚РµР»СЊ РѕС‚Р»РёС‡РµРЅ РѕС‚ РЅСѓР»СЏ)\n";
 					InputFraction(f1, 1);
 					InputFraction(f2, 2);
 					Fraction temp;
 					temp = DIV_QQ_Q(f1, f2);
 					if (temp.denum.A[0] != 0) {
-						cout << "\nРезультат: ";
+						cout << "\nР РµР·СѓР»СЊС‚Р°С‚: ";
 						OutputFraction(temp);
 						cout << "\n";
 					}
@@ -370,7 +370,7 @@ int main() {
 					system("cls");
 					break;
 				default:
-					cout << "\nОшибка! Неверно введеный номер\n";
+					cout << "\nРћС€РёР±РєР°! РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅС‹Р№ РЅРѕРјРµСЂ\n";
 					system("pause");
 					system("cls");
 					break;
@@ -397,21 +397,21 @@ int main() {
 					system("cls");
 					break;
 				case 1:
-					cout << "\nСложение многочленов\n";
+					cout << "\nРЎР»РѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ\n";
 					inputPolynom(p1, 1);
 					inputPolynom(p2, 2);
 					p3 = ADD_PP_P(p1, p2);
-					cout << "\nРезультат: "; outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; outputPolynom(p3); cout << "\n";
 					Ochistka(p1);
 					Ochistka(p2);
 					system("pause");
 					system("cls");
 					break;
 				case 2:
-					cout << "\nВычитание многочленов\n";
+					cout << "\nР’С‹С‡РёС‚Р°РЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ\n";
 					inputPolynom(p1, 1);
 					inputPolynom(p2, 2);
-					cout << "\nРезультат: "; p3 = SUB_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = SUB_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
 					Ochistka(p1);
 					Ochistka(p2);
 					system("pause");
@@ -419,47 +419,47 @@ int main() {
 					break;
 				case 3:
 					Fraction f;
-					cout << "\nУмножение многочлена на рациональное число\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР° РЅР° СЂР°С†РёРѕРЅР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ\n";
 					inputPolynom(p1, 0);
 					cout << "\n";
 					InputFraction(f, 0);
-					cout << "\nРезультат: "; p3 = MUL_PQ_P(p1, f); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = MUL_PQ_P(p1, f); outputPolynom(p3); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 4:
-					cout << "\nУмножение многочлена на x^k\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР° РЅР° x^k\n";
 					inputPolynom(p1, 0);
-					cout << "\nВведите k: ";
+					cout << "\nР’РІРµРґРёС‚Рµ k: ";
 					cin.ignore(cin.rdbuf()->in_avail());
-					getline(cin, k); // Запись строки с консоли
+					getline(cin, k); // Р—Р°РїРёСЃСЊ СЃС‚СЂРѕРєРё СЃ РєРѕРЅСЃРѕР»Рё
 					cin.clear();
-					for (int i = 0; i < k.length(); i++) // Удаление пробелов в строке
+					for (int i = 0; i < k.length(); i++) // РЈРґР°Р»РµРЅРёРµ РїСЂРѕР±РµР»РѕРІ РІ СЃС‚СЂРѕРєРµ
 					{
 						if (k[i] == ' ') { k.erase(i, 1); i--; }
 					}
-					p3 = MUL_Pxk_P(p1, k); cout << "\nРезультат: "; outputPolynom(p3); cout << "\n";
+					p3 = MUL_Pxk_P(p1, k); cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; outputPolynom(p3); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 5:
-					cout << "\nСтарший коэффициент многочлена\n";
+					cout << "\nРЎС‚Р°СЂС€РёР№ РєРѕСЌС„С„РёС†РёРµРЅС‚ РјРЅРѕРіРѕС‡Р»РµРЅР°\n";
 					inputPolynom(p1, 0);
-					cout << "\nРезультат: "; LED_P_Q(p1); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; LED_P_Q(p1); cout << "\n";
 					Ochistka(p1);
 					system("pause");
 					system("cls");
 					break;
 				case 6:
-					cout << "\nСтепень многочлена\n";
+					cout << "\nРЎС‚РµРїРµРЅСЊ РјРЅРѕРіРѕС‡Р»РµРЅР°\n";
 					inputPolynom(p1, 0);
-					cout << "\nРезультат: "; DEG_P_N(p1); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; DEG_P_N(p1); cout << "\n";
 					Ochistka(p1);
 					system("pause");
 					system("cls");
 					break;
 				case 7:
-					cout << "\nВынесение из многочлена НОК знаменателей коэффициентов и НОД числителей\n";
+					cout << "\nР’С‹РЅРµСЃРµРЅРёРµ РёР· РјРЅРѕРіРѕС‡Р»РµРЅР° РќРћРљ Р·РЅР°РјРµРЅР°С‚РµР»РµР№ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ Рё РќРћР” С‡РёСЃР»РёС‚РµР»РµР№\n";
 					do
 					{
 						inputPolynom(p1, 0);
@@ -467,82 +467,82 @@ int main() {
 						{
 							if (p1.C[i].num.A != NULL) count++;
 						}
-						if (count == 0) { cout << "Ошибка! Многочлен пуст\nВведите многочлен заново"; count = 0; }
-						if (count == 1) { cout << "Ошибка! Введен один одночлен, недостаточно для вычисления\nВведите многочлен заново"; count = 0; }
+						if (count == 0) { cout << "РћС€РёР±РєР°! РњРЅРѕРіРѕС‡Р»РµРЅ РїСѓСЃС‚\nР’РІРµРґРёС‚Рµ РјРЅРѕРіРѕС‡Р»РµРЅ Р·Р°РЅРѕРІРѕ"; count = 0; }
+						if (count == 1) { cout << "РћС€РёР±РєР°! Р’РІРµРґРµРЅ РѕРґРёРЅ РѕРґРЅРѕС‡Р»РµРЅ, РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ\nР’РІРµРґРёС‚Рµ РјРЅРѕРіРѕС‡Р»РµРЅ Р·Р°РЅРѕРІРѕ"; count = 0; }
 					} while (count < 2);
-					cout << "\nРезультат: "; OutputFraction(FAC_P_Q(p1, count)); cout << "("; outputPolynom(p1); cout << ")\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutputFraction(FAC_P_Q(p1, count)); cout << "("; outputPolynom(p1); cout << ")\n";
 					count = 0;
 					system("pause");
 					system("cls");
 					break;
-					/*cout << "\nВынесение из многочлена НОК знаменателей коэффициентов и НОД числителей\nВведите полином: "; inputPolynom(p1);
-					cout << "\nРезультат: "; OutputFraction(FAC_P_Q(p1)); cout << "\n";
+					/*cout << "\nР’С‹РЅРµСЃРµРЅРёРµ РёР· РјРЅРѕРіРѕС‡Р»РµРЅР° РќРћРљ Р·РЅР°РјРµРЅР°С‚РµР»РµР№ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ Рё РќРћР” С‡РёСЃР»РёС‚РµР»РµР№\nР’РІРµРґРёС‚Рµ РїРѕР»РёРЅРѕРј: "; inputPolynom(p1);
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; OutputFraction(FAC_P_Q(p1)); cout << "\n";
 					system("pause");
 					system("cls");
 					break;*/
 				case 8:
-					cout << "\nУмножение многочленов\n";
+					cout << "\nРЈРјРЅРѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ\n";
 					inputPolynom(p1, 1);
 					inputPolynom(p2, 2);
-					cout << "\nРезультат: "; p3 = MUL_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = MUL_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
 					Ochistka(p1);
 					Ochistka(p2);
 					system("pause");
 					system("cls");
 					break;
 				case 9:
-					cout << "\nЧастное от деления многочлена на многочлен при делении с остатком\n";
+					cout << "\nР§Р°СЃС‚РЅРѕРµ РѕС‚ РґРµР»РµРЅРёСЏ РјРЅРѕРіРѕС‡Р»РµРЅР° РЅР° РјРЅРѕРіРѕС‡Р»РµРЅ РїСЂРё РґРµР»РµРЅРёРё СЃ РѕСЃС‚Р°С‚РєРѕРј\n";
 					inputPolynom(p1, 1);
 					inputPolynom(p2, 2);
-					cout << "\nРезультат: "; p3 = DIV_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = DIV_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
 					Ochistka(p1);
 					Ochistka(p2);
 					system("pause");
 					system("cls");
 					break;
 				case 10:
-					cout << "\nОстаток от деления многочлена на многочлен при делении с остатком\n";
+					cout << "\nРћСЃС‚Р°С‚РѕРє РѕС‚ РґРµР»РµРЅРёСЏ РјРЅРѕРіРѕС‡Р»РµРЅР° РЅР° РјРЅРѕРіРѕС‡Р»РµРЅ РїСЂРё РґРµР»РµРЅРёРё СЃ РѕСЃС‚Р°С‚РєРѕРј\n";
 					inputPolynom(p1, 1);
 					inputPolynom(p2, 2);
-					cout << "\nРезультат: "; p3 = MOD_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = MOD_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
 					Ochistka(p1);
 					Ochistka(p2);
 					system("pause");
 					system("cls");
 					break;
 				case 11:
-					cout << "\nНОД многочленов\n";
+					cout << "\nРќРћР” РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ\n";
 					inputPolynom(p1, 1);
 					inputPolynom(p2, 2);
-					cout << "\nРезультат: "; p3 = GCF_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = GCF_PP_P(p1, p2); outputPolynom(p3); cout << "\n";
 					Ochistka(p1);
 					Ochistka(p2);
 					system("pause");
 					system("cls");
 					break;
 				case 12:
-					cout << "\nПроизводная многочлена\n";
+					cout << "\nРџСЂРѕРёР·РІРѕРґРЅР°СЏ РјРЅРѕРіРѕС‡Р»РµРЅР°\n";
 					inputPolynom(p1, 0);
-					cout << "\nРезультат: "; p3 = DER_P_P(p1); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = DER_P_P(p1); outputPolynom(p3); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				case 13:
-					cout << "\nПреобразование многочлена — кратные корни в простые\n";
+					cout << "\nРџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР° вЂ” РєСЂР°С‚РЅС‹Рµ РєРѕСЂРЅРё РІ РїСЂРѕСЃС‚С‹Рµ\n";
 					inputPolynom(p1, 0);
-					cout << "\nРезультат: "; p3 = NMR_P_P(p1); outputPolynom(p3); cout << "\n";
+					cout << "\nР РµР·СѓР»СЊС‚Р°С‚: "; p3 = NMR_P_P(p1); outputPolynom(p3); cout << "\n";
 					system("pause");
 					system("cls");
 					break;
 				default:
-					cout << "\nОшибка! Неверно введеный номер\n";
+					cout << "\nРћС€РёР±РєР°! РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅС‹Р№ РЅРѕРјРµСЂ\n";
 					system("pause");
 					system("cls");
 					break;
 				}
 			}
 		default:
-			cout << "\nОшибка! Неверно введеный номер\n";
+			cout << "\nРћС€РёР±РєР°! РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅС‹Р№ РЅРѕРјРµСЂ\n";
 			system("pause");
 			system("cls");
 			break;
